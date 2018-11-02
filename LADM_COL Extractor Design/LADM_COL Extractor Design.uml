@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_c_8MkN1aEeivAs0mtiZ7pg" name="LADM_COL Extractor Design">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_dPWhkN1aEeivAs0mtiZ7pg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_dBgS0N1aEeivAs0mtiZ7pg" name="Activity1"/>
+  <packagedElement xmi:type="uml:Model" xmi:id="_t3eZ4N3oEei7p5ifykqe8A" name="LADM_COL EXtractor Model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_8_zlMN2LEeil5JekWhlz5g" name="SeccionInformativa">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_D39V4N3mEei7p5ifykqe8A" name="infoTutorial">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Ge474N3mEei7p5ifykqe8A" name="infoProyecto">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_e9AnUN2IEeil5JekWhlz5g" name="ConectorBD">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8G0PEN2IEeil5JekWhlz5g" name="conexion">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dBrUUN2OEeil5JekWhlz5g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dB7L8N2OEeil5JekWhlz5g" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ka1TMN2OEeil5JekWhlz5g" name="hostBaseDeDatos">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_yyptUN2OEeil5JekWhlz5g" name="puerto"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_GyVu4N2PEeil5JekWhlz5g" name="nombreBaseDeDatos">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_NhcrMN2PEeil5JekWhlz5g" name="usuario">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_VS2K8N2PEeil5JekWhlz5g" name="contrasena">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_jPL_cN2OEeil5JekWhlz5g" name="Conectar"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_k5Nb0N2PEeil5JekWhlz5g" name="Desconectar"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_nirYcN2PEeil5JekWhlz5g" name="TestearConexion"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_pv9vYN2PEeil5JekWhlz5g" name="PingHost"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_EjNMkN2JEeil5JekWhlz5g" name="ReporteActualizacionCatastral">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ZTiHQN2REeil5JekWhlz5g" name="generado">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_d7xdsN2REeil5JekWhlz5g" name="progreso">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1q8owN2REeil5JekWhlz5g" name="inicio"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_7igSAN2REeil5JekWhlz5g" name="Completado" value="100"/>
+        <defaultValue xmi:type="uml:Interval" xmi:id="_DiwtIN2SEeil5JekWhlz5g" name="ProgresoDeGeneracionDeReporte" max="_7igSAN2REeil5JekWhlz5g" min="_1q8owN2REeil5JekWhlz5g"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_peJwkN3lEei7p5ifykqe8A" name="habilitado">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_0tuQcd4eEei7p5ifykqe8A" name="conectorbd" type="_e9AnUN2IEeil5JekWhlz5g" association="_0tsbQN4eEei7p5ifykqe8A">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0tu3gd4eEei7p5ifykqe8A" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_rC7JoN4fEei7p5ifykqe8A" name="reporte">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_hknXMN2SEeil5JekWhlz5g" name="GenerarReporte"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_vhOcAN2SEeil5JekWhlz5g" name="ListaDescargasReportes">
+      <generalization xmi:type="uml:Generalization" xmi:id="_ai33sN4fEei7p5ifykqe8A" general="_EjNMkN2JEeil5JekWhlz5g"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_503gUN3lEei7p5ifykqe8A" name="listaReportesDisponibles" type="_EjNMkN2JEeil5JekWhlz5g"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_nGlK8N2SEeil5JekWhlz5g" name="DescargarReporte"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_0tsbQN4eEei7p5ifykqe8A" name="consulta usando el" memberEnd="_0tuQcd4eEei7p5ifykqe8A _0tvekN4eEei7p5ifykqe8A">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0ttpYN4eEei7p5ifykqe8A" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0tuQcN4eEei7p5ifykqe8A" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_0tvekN4eEei7p5ifykqe8A" name="reporteactualizacioncatastral" type="_EjNMkN2JEeil5JekWhlz5g" association="_0tsbQN4eEei7p5ifykqe8A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7s5pEN4eEei7p5ifykqe8A"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7tW8EN4eEei7p5ifykqe8A" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_i4-MUN3lEei7p5ifykqe8A">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_i4_acN3lEei7p5ifykqe8A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
+</uml:Model>
