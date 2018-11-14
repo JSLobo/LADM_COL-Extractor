@@ -3,10 +3,49 @@
   <packageImport xmi:type="uml:PackageImport" xmi:id="_NNTJsOdfEeiMuPRhRJe2BQ">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
-  <packagedElement xmi:type="uml:StateMachine" xmi:id="_NCH0cOdfEeiMuPRhRJe2BQ" name="StateMachine1">
-    <region xmi:type="uml:Region" xmi:id="_NCbWcOdfEeiMuPRhRJe2BQ" name="Region1"/>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_NCH0cOdfEeiMuPRhRJe2BQ" name="Diagrama de Estado">
+    <region xmi:type="uml:Region" xmi:id="_NCbWcOdfEeiMuPRhRJe2BQ" name="Region1">
+      <transition xmi:type="uml:Transition" xmi:id="_WQApQOfAEeienLUq7YPChA" name="ConectarBD" source="_GB0jYOfAEeienLUq7YPChA" target="_P9jzwOfAEeienLUq7YPChA"/>
+      <transition xmi:type="uml:Transition" xmi:id="_0DBmEOfAEeienLUq7YPChA" name="DesconectarBD" source="_P9jzwOfAEeienLUq7YPChA" target="_wsknoOfAEeienLUq7YPChA"/>
+      <transition xmi:type="uml:Transition" xmi:id="_PF4vcOfBEeienLUq7YPChA" name="Consultar" source="_F1ydEOfBEeienLUq7YPChA" target="_P9jzwOfAEeienLUq7YPChA"/>
+      <transition xmi:type="uml:Transition" xmi:id="_ZgOnYOfBEeienLUq7YPChA" name="GenerarReporte" source="_F1ydEOfBEeienLUq7YPChA" target="_WsIIEOfBEeienLUq7YPChA"/>
+      <transition xmi:type="uml:Transition" xmi:id="_eWGKIOfBEeienLUq7YPChA" source="_WsIIEOfBEeienLUq7YPChA" target="_GalBoOfAEeienLUq7YPChA"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_GB0jYOfAEeienLUq7YPChA" name="Inicio"/>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_GalBoOfAEeienLUq7YPChA" name="Fin"/>
+      <subvertex xmi:type="uml:State" xmi:id="_P9jzwOfAEeienLUq7YPChA" name="Conectado"/>
+      <subvertex xmi:type="uml:State" xmi:id="_wsknoOfAEeienLUq7YPChA" name="Desconectado"/>
+      <subvertex xmi:type="uml:State" xmi:id="_F1ydEOfBEeienLUq7YPChA" name="consultaEjecutada"/>
+      <subvertex xmi:type="uml:State" xmi:id="_WsIIEOfBEeienLUq7YPChA" name="ReporteGenerado"/>
+    </region>
   </packagedElement>
-  <packagedElement xmi:type="uml:Activity" xmi:id="_NClugOdfEeiMuPRhRJe2BQ" name="Activity2"/>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_NClugOdfEeiMuPRhRJe2BQ" name="Diagrama de Actividad" node="_HqcmsOfDEeienLUq7YPChA _7tjhcOfDEeienLUq7YPChA _OEZ88OfEEeienLUq7YPChA _fOK6QOfEEeienLUq7YPChA _pvcgoOfEEeienLUq7YPChA _t-es4OfEEeienLUq7YPChA _-V3yEOfEEeienLUq7YPChA _C6B5wOfFEeienLUq7YPChA _GEm_YOfFEeienLUq7YPChA _TIAkQOfFEeienLUq7YPChA _Z_cWIOfFEeienLUq7YPChA">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_mv_QcOfFEeienLUq7YPChA" target="_OEZ88OfEEeienLUq7YPChA" source="_HqcmsOfDEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_okgiEOfFEeienLUq7YPChA" target="_pvcgoOfEEeienLUq7YPChA" source="_OEZ88OfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_pk2kwOfFEeienLUq7YPChA" target="_t-es4OfEEeienLUq7YPChA" source="_pvcgoOfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_rNPe4OfFEeienLUq7YPChA" name="NO" target="_OEZ88OfEEeienLUq7YPChA" source="_t-es4OfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_2NF3oOfFEeienLUq7YPChA" name="SÍ" target="_C6B5wOfFEeienLUq7YPChA" source="_t-es4OfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5t32wOfFEeienLUq7YPChA" target="_GEm_YOfFEeienLUq7YPChA" source="_C6B5wOfFEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_7iVeAOfFEeienLUq7YPChA" target="_TIAkQOfFEeienLUq7YPChA" source="_GEm_YOfFEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_-L5hQOfFEeienLUq7YPChA" target="_Z_cWIOfFEeienLUq7YPChA" source="_TIAkQOfFEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_CdfSQOfGEeienLUq7YPChA" target="_7tjhcOfDEeienLUq7YPChA" source="_Z_cWIOfFEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_K9qjkOfGEeienLUq7YPChA" target="_-V3yEOfEEeienLUq7YPChA" source="_fOK6QOfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_S4UtAOfGEeienLUq7YPChA" name="NO" target="_OEZ88OfEEeienLUq7YPChA" source="_-V3yEOfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_WhJN0OfGEeienLUq7YPChA" name="SÍ" target="_pvcgoOfEEeienLUq7YPChA" source="_-V3yEOfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_cd8jcOfGEeienLUq7YPChA" target="_fOK6QOfEEeienLUq7YPChA" source="_OEZ88OfEEeienLUq7YPChA"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_HqcmsOfDEeienLUq7YPChA" name="Inicio" outgoing="_mv_QcOfFEeienLUq7YPChA"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_7tjhcOfDEeienLUq7YPChA" name="Fin" incoming="_CdfSQOfGEeienLUq7YPChA"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_OEZ88OfEEeienLUq7YPChA" name="Completar datos de conexion a BD" incoming="_mv_QcOfFEeienLUq7YPChA _rNPe4OfFEeienLUq7YPChA _S4UtAOfGEeienLUq7YPChA" outgoing="_okgiEOfFEeienLUq7YPChA _cd8jcOfGEeienLUq7YPChA"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_fOK6QOfEEeienLUq7YPChA" name="Hacer test de conexión" incoming="_cd8jcOfGEeienLUq7YPChA" outgoing="_K9qjkOfGEeienLUq7YPChA"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_pvcgoOfEEeienLUq7YPChA" name="Conectar" incoming="_okgiEOfFEeienLUq7YPChA _WhJN0OfGEeienLUq7YPChA" outgoing="_pk2kwOfFEeienLUq7YPChA"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_t-es4OfEEeienLUq7YPChA" name="¿Conectado?" incoming="_pk2kwOfFEeienLUq7YPChA" outgoing="_rNPe4OfFEeienLUq7YPChA _2NF3oOfFEeienLUq7YPChA"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_-V3yEOfEEeienLUq7YPChA" name="¿Conexión exitosa?" incoming="_K9qjkOfGEeienLUq7YPChA" outgoing="_S4UtAOfGEeienLUq7YPChA _WhJN0OfGEeienLUq7YPChA"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_C6B5wOfFEeienLUq7YPChA" name="Consultar información" incoming="_2NF3oOfFEeienLUq7YPChA" outgoing="_5t32wOfFEeienLUq7YPChA"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_GEm_YOfFEeienLUq7YPChA" name="Generar Reporte" incoming="_5t32wOfFEeienLUq7YPChA" outgoing="_7iVeAOfFEeienLUq7YPChA"/>
+    <node xmi:type="uml:DataStoreNode" xmi:id="_TIAkQOfFEeienLUq7YPChA" name="Reporte en archivo .Txt" incoming="_7iVeAOfFEeienLUq7YPChA" outgoing="_-L5hQOfFEeienLUq7YPChA">
+      <upperBound xmi:type="uml:LiteralInteger" xmi:id="_TICZcOfFEeienLUq7YPChA" value="1"/>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_Z_cWIOfFEeienLUq7YPChA" name="Descargar" incoming="_-L5hQOfFEeienLUq7YPChA" outgoing="_CdfSQOfGEeienLUq7YPChA"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Model" xmi:id="_I46yUOd-EeiMuPRhRJe2BQ" name="LADM_COL EXtractor - Modelo de vista arquitectónica">
     <packagedElement xmi:type="uml:Class" xmi:id="_I46yUed-EeiMuPRhRJe2BQ" name="SeccionInformativa">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yUud-EeiMuPRhRJe2BQ" name="infoTutorial">
@@ -104,19 +143,16 @@
       <ownedAttribute xmi:type="uml:Property" xmi:id="_s7T9UOeQEeiMuPRhRJe2BQ" name="habilitado">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_xauu8OeQEeiMuPRhRJe2BQ" name="reporte">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_xauu8OeQEeiMuPRhRJe2BQ" name="rutaDirectoriorReporte">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_6--acOeSEeiMuPRhRJe2BQ" name="conectorbd" type="_gRyZYOeCEeiMuPRhRJe2BQ" association="_6-8lQOeSEeiMuPRhRJe2BQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6_A2sOeSEeiMuPRhRJe2BQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6_Cr4OeSEeiMuPRhRJe2BQ" value="1"/>
       </ownedAttribute>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_8pGE0OeQEeiMuPRhRJe2BQ" name="GenerarReporte"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_BHIWYOeREeiMuPRhRJe2BQ" name="BuzonDescarga">
-      <generalization xmi:type="uml:Generalization" xmi:id="_Gt44oOeTEeiMuPRhRJe2BQ" general="_n2_PMOeNEeiMuPRhRJe2BQ"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_iiD_oOeSEeiMuPRhRJe2BQ" name="reporteGenerado" type="_n2_PMOeNEeiMuPRhRJe2BQ"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_tMrIMOeSEeiMuPRhRJe2BQ" name="DescargarReporte"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_8pGE0OeQEeiMuPRhRJe2BQ" name="ExtraerInformacion"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_By4i8OeuEeienLUq7YPChA" name="ObtenerRutaDirectorio"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_RhyEwOeuEeienLUq7YPChA" name="construirReporte"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_uywVMOeSEeiMuPRhRJe2BQ" name="SeccionInformativa">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_XzSTUOeTEeiMuPRhRJe2BQ" name="infoTutorial">
@@ -135,5 +171,11 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AopYsOeTEeiMuPRhRJe2BQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ApnpEOeTEeiMuPRhRJe2BQ" value="*"/>
     </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_CC_5MOfHEeienLUq7YPChA" name="LADM_COL-Extractor">
+    <packagedElement xmi:type="uml:Component" xmi:id="_igF2oOfHEeienLUq7YPChA" name="Component1"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_lDKQUOfHEeienLUq7YPChA" name="Component2"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_oP_YsOfHEeienLUq7YPChA" name="Component3"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_wj69wOfHEeienLUq7YPChA" name="Component4"/>
   </packagedElement>
 </uml:Model>
