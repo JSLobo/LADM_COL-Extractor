@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_NAv7cOdfEeiMuPRhRJe2BQ" name="LADM_COL Extractor - Architectural view model">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_NNTJsOdfEeiMuPRhRJe2BQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_NCH0cOdfEeiMuPRhRJe2BQ" name="StateMachine1">
+    <region xmi:type="uml:Region" xmi:id="_NCbWcOdfEeiMuPRhRJe2BQ" name="Region1"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_NClugOdfEeiMuPRhRJe2BQ" name="Activity2"/>
+  <packagedElement xmi:type="uml:Model" xmi:id="_I46yUOd-EeiMuPRhRJe2BQ" name="LADM_COL EXtractor - Modelo de vista arquitectónica">
+    <packagedElement xmi:type="uml:Class" xmi:id="_I46yUed-EeiMuPRhRJe2BQ" name="SeccionInformativa">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yUud-EeiMuPRhRJe2BQ" name="infoTutorial">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yU-d-EeiMuPRhRJe2BQ" name="infoProyecto">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_I46yVOd-EeiMuPRhRJe2BQ" name="ConectorBD">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yVed-EeiMuPRhRJe2BQ" name="conexion">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I46yVud-EeiMuPRhRJe2BQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I46yV-d-EeiMuPRhRJe2BQ" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yWOd-EeiMuPRhRJe2BQ" name="hostBaseDeDatos">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yWed-EeiMuPRhRJe2BQ" name="puerto"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yWud-EeiMuPRhRJe2BQ" name="nombreBaseDeDatos">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yW-d-EeiMuPRhRJe2BQ" name="usuario">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yXOd-EeiMuPRhRJe2BQ" name="contrasena">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_I46yXed-EeiMuPRhRJe2BQ" name="Conectar"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_I46yXud-EeiMuPRhRJe2BQ" name="Desconectar"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_I46yX-d-EeiMuPRhRJe2BQ" name="TestearConexion"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_I46yYOd-EeiMuPRhRJe2BQ" name="PingHost"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_I46yYed-EeiMuPRhRJe2BQ" name="ReporteActualizacionCatastral">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yYud-EeiMuPRhRJe2BQ" name="generado">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yY-d-EeiMuPRhRJe2BQ" name="progreso">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I46yZOd-EeiMuPRhRJe2BQ" name="inicio"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_I46yZed-EeiMuPRhRJe2BQ" name="Completado" value="100"/>
+        <defaultValue xmi:type="uml:Interval" xmi:id="_I46yZud-EeiMuPRhRJe2BQ" name="ProgresoDeGeneracionDeReporte" max="_I46yZed-EeiMuPRhRJe2BQ" min="_I46yZOd-EeiMuPRhRJe2BQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yZ-d-EeiMuPRhRJe2BQ" name="habilitado">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yaOd-EeiMuPRhRJe2BQ" name="conectorbd" type="_I46yVOd-EeiMuPRhRJe2BQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I46yaed-EeiMuPRhRJe2BQ" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yaud-EeiMuPRhRJe2BQ" name="reporte">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_I46ya-d-EeiMuPRhRJe2BQ" name="GenerarReporte"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_I46ybOd-EeiMuPRhRJe2BQ" name="BuzonDescarga">
+      <generalization xmi:type="uml:Generalization" xmi:id="_I46ybed-EeiMuPRhRJe2BQ" general="_I46yYed-EeiMuPRhRJe2BQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I46ybud-EeiMuPRhRJe2BQ" name="ReporteGenerado" type="_I46yYed-EeiMuPRhRJe2BQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_I46yb-d-EeiMuPRhRJe2BQ" name="DescargarReporte"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_gRyZYOeCEeiMuPRhRJe2BQ" name="ConectorBD">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_DPq4kOeDEeiMuPRhRJe2BQ" name="conexion">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_4mfd8OeDEeiMuPRhRJe2BQ" name="hostBaseDeDatos">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_B6VA0OeEEeiMuPRhRJe2BQ" name="puerto">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_GJH8gOeEEeiMuPRhRJe2BQ" name="Predeterminado" value="5432"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_PYAG4OeEEeiMuPRhRJe2BQ" name="nombreBaseDeDatos">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_VGHgQOeEEeiMuPRhRJe2BQ" name="usuario">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_asujcOeEEeiMuPRhRJe2BQ" name="contrasena">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_xkYikOeCEeiMuPRhRJe2BQ" name="Conectar"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_0EZBMOeCEeiMuPRhRJe2BQ" name="Desconectar"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_2HruoOeCEeiMuPRhRJe2BQ" name="TestearConexion"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_42L8QOeCEeiMuPRhRJe2BQ" name="PingHost"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_n2_PMOeNEeiMuPRhRJe2BQ" name="ReporteActualizacionCatastral">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_vbMAcOeNEeiMuPRhRJe2BQ" name="generado">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_zYYOwOeNEeiMuPRhRJe2BQ" name="progreso">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_m11z4OeQEeiMuPRhRJe2BQ" name="inicio"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_qS2GQOeQEeiMuPRhRJe2BQ" name="fin" value="100"/>
+        <defaultValue xmi:type="uml:Interval" xmi:id="_eWBu8OeQEeiMuPRhRJe2BQ" name="progresoDeGeneracionDeReporte" max="_qS2GQOeQEeiMuPRhRJe2BQ" min="_m11z4OeQEeiMuPRhRJe2BQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_s7T9UOeQEeiMuPRhRJe2BQ" name="habilitado">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_xauu8OeQEeiMuPRhRJe2BQ" name="reporte">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_6--acOeSEeiMuPRhRJe2BQ" name="conectorbd" type="_gRyZYOeCEeiMuPRhRJe2BQ" association="_6-8lQOeSEeiMuPRhRJe2BQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6_A2sOeSEeiMuPRhRJe2BQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6_Cr4OeSEeiMuPRhRJe2BQ" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_8pGE0OeQEeiMuPRhRJe2BQ" name="GenerarReporte"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_BHIWYOeREeiMuPRhRJe2BQ" name="BuzonDescarga">
+      <generalization xmi:type="uml:Generalization" xmi:id="_Gt44oOeTEeiMuPRhRJe2BQ" general="_n2_PMOeNEeiMuPRhRJe2BQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_iiD_oOeSEeiMuPRhRJe2BQ" name="reporteGenerado" type="_n2_PMOeNEeiMuPRhRJe2BQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_tMrIMOeSEeiMuPRhRJe2BQ" name="DescargarReporte"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_uywVMOeSEeiMuPRhRJe2BQ" name="SeccionInformativa">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_XzSTUOeTEeiMuPRhRJe2BQ" name="infoTutorial">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_atJcYOeTEeiMuPRhRJe2BQ" name="infoProyecto">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_6-8lQOeSEeiMuPRhRJe2BQ" memberEnd="_6--acOeSEeiMuPRhRJe2BQ _6_EhEOeSEeiMuPRhRJe2BQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6-9zYOeSEeiMuPRhRJe2BQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6-9zYeeSEeiMuPRhRJe2BQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_6_EhEOeSEeiMuPRhRJe2BQ" name="reporteactualizacioncatastral" type="_n2_PMOeNEeiMuPRhRJe2BQ" association="_6-8lQOeSEeiMuPRhRJe2BQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AopYsOeTEeiMuPRhRJe2BQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ApnpEOeTEeiMuPRhRJe2BQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>
