@@ -7,7 +7,7 @@
     <region xmi:type="uml:Region" xmi:id="_NCbWcOdfEeiMuPRhRJe2BQ" name="Region1">
       <transition xmi:type="uml:Transition" xmi:id="_WQApQOfAEeienLUq7YPChA" name="ConectarBD" source="_GB0jYOfAEeienLUq7YPChA" target="_P9jzwOfAEeienLUq7YPChA"/>
       <transition xmi:type="uml:Transition" xmi:id="_0DBmEOfAEeienLUq7YPChA" name="DesconectarBD" source="_P9jzwOfAEeienLUq7YPChA" target="_wsknoOfAEeienLUq7YPChA"/>
-      <transition xmi:type="uml:Transition" xmi:id="_PF4vcOfBEeienLUq7YPChA" name="Consultar" source="_F1ydEOfBEeienLUq7YPChA" target="_P9jzwOfAEeienLUq7YPChA"/>
+      <transition xmi:type="uml:Transition" xmi:id="_PF4vcOfBEeienLUq7YPChA" name="Consultar" source="_P9jzwOfAEeienLUq7YPChA" target="_F1ydEOfBEeienLUq7YPChA"/>
       <transition xmi:type="uml:Transition" xmi:id="_ZgOnYOfBEeienLUq7YPChA" name="GenerarReporte" source="_F1ydEOfBEeienLUq7YPChA" target="_WsIIEOfBEeienLUq7YPChA"/>
       <transition xmi:type="uml:Transition" xmi:id="_eWGKIOfBEeienLUq7YPChA" source="_WsIIEOfBEeienLUq7YPChA" target="_GalBoOfAEeienLUq7YPChA"/>
       <subvertex xmi:type="uml:Pseudostate" xmi:id="_GB0jYOfAEeienLUq7YPChA" name="Inicio"/>
