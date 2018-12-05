@@ -52,10 +52,6 @@
               <element xmi:type="uml:Operation" href="LADM_COL%20Extractor%20-%20Architectural%20view%20model.uml#_2HruoOeCEeiMuPRhRJe2BQ"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_2H6YIeeCEeiMuPRhRJe2BQ"/>
             </children>
-            <children xmi:type="notation:Shape" xmi:id="_42VtQOeCEeiMuPRhRJe2BQ" type="Operation_ClassOperationLabel">
-              <element xmi:type="uml:Operation" href="LADM_COL%20Extractor%20-%20Architectural%20view%20model.uml#_42L8QOeCEeiMuPRhRJe2BQ"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_42VtQeeCEeiMuPRhRJe2BQ"/>
-            </children>
             <styles xmi:type="notation:TitleStyle" xmi:id="_gR01q-eCEeiMuPRhRJe2BQ"/>
             <styles xmi:type="notation:SortingStyle" xmi:id="_gR01rOeCEeiMuPRhRJe2BQ"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_gR01reeCEeiMuPRhRJe2BQ"/>

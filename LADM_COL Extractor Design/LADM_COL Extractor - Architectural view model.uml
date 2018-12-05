@@ -128,7 +128,6 @@
       <ownedOperation xmi:type="uml:Operation" xmi:id="_xkYikOeCEeiMuPRhRJe2BQ" name="Conectar"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_0EZBMOeCEeiMuPRhRJe2BQ" name="Desconectar"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_2HruoOeCEeiMuPRhRJe2BQ" name="TestearConexion"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_42L8QOeCEeiMuPRhRJe2BQ" name="PingHost"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_n2_PMOeNEeiMuPRhRJe2BQ" name="ReporteActualizacionCatastral">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_vbMAcOeNEeiMuPRhRJe2BQ" name="generado">
