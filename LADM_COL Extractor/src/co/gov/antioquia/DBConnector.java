@@ -62,6 +62,18 @@ public class DBConnector {
 		}
 		return resultSet;
 	}
+	
+	public String testConnection() {
+		String status = "";
+		try {
+			DriverManager.getConnection(connectionUrl, username, password);
+			status = "Exitoso";
+			//System.out.println("Connected to the PostgreSQL server successfully.");
+		}catch (SQLException e) {
+			status = e.getMessage();
+		}
+		return status;
+	}
 
 
 	/**
@@ -87,6 +99,7 @@ public class DBConnector {
 		}
 
 		
+		System.out.printf("Status:",dbConnector.testConnection());
 	}
 }
 
