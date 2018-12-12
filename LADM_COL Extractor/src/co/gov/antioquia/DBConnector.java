@@ -82,9 +82,10 @@ public class DBConnector {
 	public static void main (String[] args) {
 		DBConnector dbConnector = new DBConnector();
 		Connection conn = dbConnector.connect();
-		ResultSet resultSet = dbConnector.execQuery("SELECT * FROM public.col_derecho", conn);//conn1.
+		ResultSet resultSet = null;
 
 		try {
+			resultSet = dbConnector.execQuery("SELECT * FROM public.col_derecho", conn);
 			while (resultSet.next()) {
 				System.out.printf("%-30.30s  %-30.30s%n", resultSet.getString("t_id"), resultSet.getString("tipo"));
 
@@ -99,7 +100,7 @@ public class DBConnector {
 		}
 
 		
-		System.out.printf("Status:",dbConnector.testConnection());
+		System.out.printf("Status: " + "%s",dbConnector.testConnection());
 	}
 }
 
