@@ -1,2 +1,2 @@
 # LADM_COL-Extractor
-# Java SE 10.0.2 (jdk-10.0.2_windows-x64_bin & jre-10.0.2_windows-x64_bin) download link: https://bit.ly/2RQvrvX
+# Java SE 1.8 (jdk-8u192-windows-x64 & jre-8u192-windows-x64) download link: https://bit.ly/2QFYFSp

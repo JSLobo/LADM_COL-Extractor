@@ -17,6 +17,8 @@ import java.awt.Toolkit;
 import javax.swing.JProgressBar;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 
 public class GUI {
@@ -66,10 +68,10 @@ public class GUI {
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		tabbedPane.addTab("Conexión", null, panel, null);
+		tabbedPane.addTab("Conexi\u00F3n", null, panel, null);
 		panel.setLayout(null);
 		
-		JLabel lblNombreDeConexin = new JLabel("Nombre de conexión");
+		JLabel lblNombreDeConexin = new JLabel("Nombre de conexi\u00F3n");
 		lblNombreDeConexin.setBounds(5, 8, 121, 14);
 		lblNombreDeConexin.setVerticalAlignment(SwingConstants.TOP);
 		panel.add(lblNombreDeConexin);
@@ -88,7 +90,7 @@ public class GUI {
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblContrasea = new JLabel("Contraseña");
+		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
 		lblContrasea.setBounds(5, 58, 98, 14);
 		panel.add(lblContrasea);
 		
@@ -105,7 +107,17 @@ public class GUI {
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JButton btnProbarConexin = new JButton("Probar conexión");
+		JButton btnProbarConexin = new JButton("Probar conexi\u00F3n");
+		btnProbarConexin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DBConnector dbConnector = new DBConnector();
+				System.out.printf("Status: " + "%s",dbConnector.testConnection());
+				JLabel lblNewLabel_6 = new JLabel("Hola");
+				lblNewLabel_6.setBounds(49, 215, 320, 14);
+				panel.add(lblNewLabel_6);
+				
+			}
+		});
 		btnProbarConexin.setBounds(5, 181, 132, 23);
 		panel.add(btnProbarConexin);
 		
@@ -126,7 +138,7 @@ public class GUI {
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Reporte de Actualización Catastral", null, panel_1, null);
+		tabbedPane.addTab("Reporte de Actualizaci\u00F3n Catastral", null, panel_1, null);
 		panel_1.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Generar reporte");
@@ -141,11 +153,11 @@ public class GUI {
 		progressBar.setBounds(157, 185, 209, 23);
 		panel_1.add(progressBar);
 		
-		JLabel lblNewLabel_1 = new JLabel("Vigencia resolución");
+		JLabel lblNewLabel_1 = new JLabel("Vigencia resoluci\u00F3n");
 		lblNewLabel_1.setBounds(10, 11, 143, 14);
 		panel_1.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Número de la resolución");
+		JLabel lblNewLabel_2 = new JLabel("N\u00FAmero de la resoluci\u00F3n");
 		lblNewLabel_2.setBounds(10, 38, 143, 14);
 		panel_1.add(lblNewLabel_2);
 		
@@ -183,7 +195,7 @@ public class GUI {
 		lblEstado.setBounds(16, 215, 46, 14);
 		panel_1.add(lblEstado);
 		
-		JLabel lblNewLabel_5 = new JLabel("Ruta donde guardará el archivo");
+		JLabel lblNewLabel_5 = new JLabel("Ruta de donde guardar\u00E1 el archivo");
 		lblNewLabel_5.setBounds(16, 129, 201, 14);
 		panel_1.add(lblNewLabel_5);
 		
