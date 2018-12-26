@@ -1,14 +1,11 @@
 package co.gov.antioquia;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -16,22 +13,25 @@ import javax.swing.JSeparator;
 import java.awt.Toolkit;
 import javax.swing.JProgressBar;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class GUI {
+public class GUI implements ActionListener {
 
 	private JFrame frame;
-	private JTextField textField;
 	private JPasswordField passwordField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private JComboBox<String> comboBox_Municipality;
 
 	/**
 	 * Launch the application.
@@ -72,44 +72,34 @@ public class GUI {
 		tabbedPane.addTab("Conexi\u00F3n", null, panel, null);
 		panel.setLayout(null);
 		
-		JLabel lblNombreDeConexin = new JLabel("Nombre de conexi\u00F3n");
-		lblNombreDeConexin.setBounds(5, 8, 121, 14);
-		lblNombreDeConexin.setVerticalAlignment(SwingConstants.TOP);
-		panel.add(lblNombreDeConexin);
-		
-		textField = new JTextField();
-		textField.setBounds(136, 5, 225, 20);
-		panel.add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblUsuario = new JLabel("Usuario");
-		lblUsuario.setBounds(5, 33, 98, 14);
+		lblUsuario.setBounds(5, 11, 98, 14);
 		panel.add(lblUsuario);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(136, 30, 225, 20);
+		textField_1.setBounds(136, 8, 225, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
-		lblContrasea.setBounds(5, 58, 98, 14);
+		lblContrasea.setBounds(5, 36, 98, 14);
 		panel.add(lblContrasea);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(136, 55, 225, 20);
+		passwordField.setBounds(136, 33, 225, 20);
 		panel.add(passwordField);
 		
 		JLabel lblNombreDeTabla = new JLabel("Nombre de BD");
-		lblNombreDeTabla.setBounds(5, 83, 98, 14);
+		lblNombreDeTabla.setBounds(5, 61, 98, 14);
 		panel.add(lblNombreDeTabla);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(136, 80, 225, 20);
+		textField_2.setBounds(136, 58, 225, 20);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JButton btnProbarConexin = new JButton("Probar conexi\u00F3n");
-		btnProbarConexin.addActionListener(new ActionListener() {
+		/*btnProbarConexin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DBConnector dbConnector = new DBConnector();
 				System.out.printf("Status: " + "%s",dbConnector.testConnection());
@@ -118,20 +108,23 @@ public class GUI {
 				panel.add(lblNewLabel_6);
 				
 			}
-		});
+		});*/
 		btnProbarConexin.setBounds(5, 181, 132, 23);
 		panel.add(btnProbarConexin);
+		btnProbarConexin.addActionListener(this);
 		
 		JButton btnDesconectar = new JButton("Desconectar");
 		btnDesconectar.setBounds(146, 181, 120, 23);
 		panel.add(btnDesconectar);
+		btnDesconectar.addActionListener(this);
 		
 		JButton btnConectar = new JButton("Conectar");
 		btnConectar.setBounds(266, 181, 109, 23);
 		panel.add(btnConectar);
+		btnConectar.addActionListener(this);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(5, 108, 364, 5);
+		separator.setBounds(5, 86, 364, 5);
 		panel.add(separator);
 		
 		JLabel lblNewLabel = new JLabel("Estado:");
@@ -142,13 +135,14 @@ public class GUI {
 		tabbedPane.addTab("Reporte de Actualizaci\u00F3n Catastral", null, panel_1, null);
 		panel_1.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Generar reporte");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnGenerarReporte = new JButton("Generar reporte");
+		btnGenerarReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(10, 185, 137, 23);
-		panel_1.add(btnNewButton);
+		btnGenerarReporte.setBounds(10, 185, 137, 23);
+		panel_1.add(btnGenerarReporte);
+		btnProbarConexin.addActionListener(this);
 		
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setBounds(157, 185, 209, 23);
@@ -176,7 +170,7 @@ public class GUI {
 		panel_1.add(textField_4);
 		textField_4.setColumns(10);
 		
-		String[] municipalityName = { "ABEJORRAL", "ABRIAQUI", "ALEJANDRIA", "AMAGA", "AMALFI", "ANDES", "ANGELOPOLIS",
+		/*String municipalityName[] = { "ABEJORRAL", "ABRIAQUI", "ALEJANDRIA", "AMAGA", "AMALFI", "ANDES", "ANGELOPOLIS",
 				"ANGOSTURA", "ANORI", "ANZA", "APARTADO", "ARBOLETES", "ARGELIA", "ARMENIA", "BARBOSA", "BELLO",
 				"BELMIRA", "BETANIA", "BETULIA", "BRICEÑO", "BURITICA", "CACERES", "CAICEDO", "CALDAS", "CAMPAMENTO",
 				"CAÑASGORDAS", "CARACOLI", "CARAMANTA", "CAREPA", "CAROLINA", "CAUCASIA", "CHIGORODO", "CISNEROS",
@@ -192,24 +186,31 @@ public class GUI {
 				"SANTA BARBARA", "SANTA FE DE ANTIOQUIA", "SANTA ROSA DE OSOS", "SANTO DOMINGO", "SEGOVIA", "SONSON",
 				"SOPETRAN", "TAMESIS", "TARAZA", "TARSO", "TITIRIBI", "TOLEDO", "TURBO", "URAMITA", "URRAO", "VALDIVIA",
 				"VALPARAISO", "VEGACHI", "VENECIA", "VIGIA DEL FUERTE", "YALI", "YARUMAL", "YOLOMBO", "YONDO",
-				"ZARAGOZA", };
+				"ZARAGOZA"};*/
 		
-		Integer[] municipalityCode = { 2, 4, 21, 30, 31, 34, 36, 38, 40, 44, 45, 51, 55, 59, 79, 88, 86, 91, 93, 107,
+		int[] municipalityCode = new int[] { 2, 4, 21, 30, 31, 34, 36, 38, 40, 44, 45, 51, 55, 59, 79, 88, 86, 91, 93, 107,
 				113, 120, 125, 129, 134, 138, 142, 145, 147, 150, 154, 172, 190, 101, 197, 206, 209, 212, 234, 237, 240,
 				250, 148, 541, 607, 697, 264, 266, 282, 284, 306, 308, 310, 313, 315, 318, 321, 347, 353, 360, 361, 364,
 				368, 376, 380, 390, 400, 411, 425, 440, 467, 475, 480, 483, 495, 490, 501, 543, 576, 579, 585, 591, 604,
 				615, 628, 631, 642, 647, 649, 652, 656, 658, 659, 660, 664, 665, 667, 670, 674, 679, 42, 686, 690, 736,
 				756, 761, 789, 790, 792, 809, 819, 837, 842, 847, 854, 856, 858, 861, 873, 885, 887, 890, 893, 895 };
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(163, 60, 203, 20);
-		panel_1.add(comboBox);
+		comboBox_Municipality = new JComboBox<String>();
+		comboBox_Municipality.setToolTipText("");
+		//DefaultComboBoxModel model = new DefaultComboBoxModel();
+		//comboBox.addItem(new Municipality(2, "ABEJORRAL"));
+		//comboBox.addItem(new Municipality(4, "ABRIAQUI"));		
+		comboBox_Municipality.setModel(new DefaultComboBoxModel(new String[] {"ABEJORRAL", "ABRIAQUI", "ALEJANDRIA", "AMAGA", "AMALFI", "ANDES", "ANGELOPOLIS", "ANGOSTURA", "ANORI", "ANZA", "APARTADO", "ARBOLETES", "ARGELIA", "ARMENIA", "BARBOSA", "BELLO", "BELMIRA", "BETANIA", "BETULIA", "BRICEÑO", "BURITICA", "CACERES", "CAICEDO", "CALDAS", "CAMPAMENTO", "CAÑASGORDAS", "CARACOLI", "CARAMANTA", "CAREPA", "CAROLINA", "CAUCASIA", "CHIGORODO", "CISNEROS", "CIUDAD BOLIVAR", "COCORNA", "CONCEPCION", "CONCORDIA", "COPACABANA", "DABEIBA", "DON MATIAS", "EBEJICO", "EL BAGRE", "EL CARMEN DE VIBORAL", "EL PEÑOL", "EL RETIRO", "EL SANTUARIO", "ENTRERRIOS", "ENVIGADO", "FREDONIA", "FRONTINO", "GIRALDO", "GIRARDOTA", "GOMEZ PLATA", "GRANADA", "GUADALUPE", "GUARNE", "GUATAPE", "HELICONIA", "HISPANIA", "ITAGUI", "ITUANGO", "JARDIN", "JERICO", "LA CEJA", "LA ESTRELLA", "LA PINTADA", "LA UNION", "LIBORINA", "MACEO", "MARINILLA", "MONTEBELLO", "MURINDO", "MUTATA", "NARIÑO", "NECHI", "NECOCLI", "OLAYA", "PEQUE", "PUEBLORRICO", "PUERTO BERRIO", "PUERTO NARE", "PUERTO TRIUNFO", "REMEDIOS", "RIONEGRO", "SABANALARGA", "SABANETA", "SALGAR", "SAN ANDRES DE CUERQUIA", "SAN CARLOS", "SAN FRANCISCO", "SAN JERONIMO", "SAN JOSE DE LA MONTANA", "SAN JUAN DE URABA", "SAN LUIS", "SAN PEDRO DE LOS MILAGROS", "SAN PEDRO DE URABA", "SAN RAFAEL", "SAN ROQUE", "SAN VICENTE", "SANTA BARBARA", "SANTA FE DE ANTIOQUIA", "SANTA ROSA DE OSOS", "SANTO DOMINGO", "SEGOVIA", "SONSON", "SOPETRAN", "TAMESIS", "TARAZA", "TARSO", "TITIRIBI", "TOLEDO", "TURBO", "URAMITA", "URRAO", "VALDIVIA", "VALPARAISO", "VEGACHI", "VENECIA", "VIGIA DEL FUERTE", "YALI", "YARUMAL", "YOLOMBO", "YONDO", "ZARAGOZA"}));
+		comboBox_Municipality.setBounds(163, 60, 203, 20);
+		panel_1.add(comboBox_Municipality);
 		
 		
+		int[] sectorCode = new int[] {1, 2};
 		JLabel lblNewLabel_4 = new JLabel("Sector");
 		lblNewLabel_4.setBounds(10, 88, 46, 14);
 		panel_1.add(lblNewLabel_4);
 		
 		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"URBANO", "RURAL"}));
 		comboBox_1.setBounds(163, 85, 203, 20);
 		panel_1.add(comboBox_1);
 		
@@ -225,9 +226,21 @@ public class GUI {
 		lblNewLabel_5.setBounds(16, 129, 201, 14);
 		panel_1.add(lblNewLabel_5);
 		
+		
 		JButton btnSeleccionar = new JButton("Seleccionar");
+		btnSeleccionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new java.io.File("."));
+				chooser.setDialogTitle("select folder");
+				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				chooser.setAcceptAllFileFilterUsed(false);
+			}
+			
+		});
 		btnSeleccionar.setBounds(214, 125, 103, 23);
 		panel_1.add(btnSeleccionar);
+		btnSeleccionar.addActionListener(this);
 		
 		textField_5 = new JTextField();
 		textField_5.setEnabled(false);
