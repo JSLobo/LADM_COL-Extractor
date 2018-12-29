@@ -251,4 +251,10 @@ public class GUI implements ActionListener {
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Ayuda", null, panel_2, null);
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }
