@@ -9,7 +9,6 @@ import java.sql.SQLException;
  */
 
 import java.sql.*;
-import java.util.Properties;
 
 
 /**
@@ -23,7 +22,8 @@ public class DBConnector {
 	String databaseName = "ladm_col";          //The database name e.g. LADM_COLTable
 	String username = "postgres";              //The username of the account that you will use to connect to the database.
 	String password = "C4tastr0";			   //The password of the account that you will use to connect to the database.
-
+    Connection conn = null;
+    Connection connTest = null;
 
 	private String connectionUrl = "jdbc:postgresql://" + databaseHost + ":" + port + "/" + databaseName;
 
@@ -31,21 +31,26 @@ public class DBConnector {
 	 * Connect to the PostgreSQL database
 	 * @return a Connection object
 	 */
-	public Connection connect() {
-		Connection conn = null;
+	public String connect(String databaseHost, int port, String databaseName, String username, String password) {
+		String status = "";
+		String connectionUrl = "jdbc:postgresql://" + databaseHost + ":" + port + "/" + databaseName;
+
 		try {
 			conn = DriverManager.getConnection(connectionUrl, username, password);
-			System.out.println("Connected to the PostgreSQL server successfully.");
+			status = "Connected to the PostgreSQL server successfully.";
 		}catch (SQLException e) {
-			System.out.println(e.getMessage());
+			status = e.getMessage();
 		}
-		return conn;
+		return status;
 	}
 	
-	public void disconnect(Connection connection) {
+	public String disconnect(Connection connection) {
+		String status = "";
 		try { connection.close();
-		System.out.println("Disconnected from the PostgreSQL server successfully.");
-		} catch (Exception e) { /* ignored */ }
+		status = "Disconnected from the PostgreSQL server successfully.";
+		} catch (Exception e) { 
+			status = e.getMessage();/* ignored */ }
+		return status;
 	}
 
 
@@ -63,11 +68,12 @@ public class DBConnector {
 		return resultSet;
 	}
 	
-	public String testConnection() {
+	public String testConnection(String databaseHost, int port, String databaseName, String username, String password) {
 		String status = "";
+		String connectionUrl = "jdbc:postgresql://" + databaseHost + ":" + port + "/" + databaseName;
 		try {
 			DriverManager.getConnection(connectionUrl, username, password);
-			status = "Exitoso";
+			status = "¡Success!";
 			//System.out.println("Connected to the PostgreSQL server successfully.");
 		}catch (SQLException e) {
 			status = e.getMessage();
@@ -81,16 +87,17 @@ public class DBConnector {
 	 */
 	public static void main (String[] args) {
 		DBConnector dbConnector = new DBConnector();
-		Connection conn = dbConnector.connect();
+		String status = dbConnector.connect("localhost", 5432, "ladm_col", "postgres", "C4tastr0");
+		System.out.println(status);
 		ResultSet resultSet = null;
 
 		try {
-			resultSet = dbConnector.execQuery("SELECT * FROM public.col_derecho", conn);
+			resultSet = dbConnector.execQuery("SELECT * FROM public.col_derecho", dbConnector.conn);
 			while (resultSet.next()) {
 				System.out.printf("%-30.30s  %-30.30s%n", resultSet.getString("t_id"), resultSet.getString("tipo"));
 
 			}
-			dbConnector.disconnect(conn);
+			System.out.println(dbConnector.disconnect(dbConnector.conn));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,7 +107,7 @@ public class DBConnector {
 		}
 
 		
-		System.out.printf("Status: " + "%s",dbConnector.testConnection());
+		System.out.printf("Status: " + "%s",dbConnector.testConnection("localhost", 5432, "ladm_col", "postgres", "C4tastr0"));
 	}
 }
 
