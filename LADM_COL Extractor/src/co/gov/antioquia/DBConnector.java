@@ -90,13 +90,35 @@ public class DBConnector {
 		String status = dbConnector.connect("localhost", 5432, "ladm_col", "postgres", "C4tastr0");
 		System.out.println(status);
 		ResultSet resultSet = null;
-
+		ResultSet resultSetTemp = null;
+		String result = "";
+		String total = "";
+		String MUTA_NRO_FICHA = "";
+		String MUTA_BARRIO = "";
+		int summatory = 0;
 		try {
-			resultSet = dbConnector.execQuery("SELECT * FROM public.col_derecho", dbConnector.conn);
-			while (resultSet.next()) {
-				System.out.printf("%-30.30s  %-30.30s%n", resultSet.getString("t_id"), resultSet.getString("tipo"));
-
-			}
+			//resultSet = dbConnector.execQuery("SELECT * FROM public.col_derecho", dbConnector.conn);
+			resultSet = dbConnector.execQuery("SELECT * FROM public.predio", dbConnector.conn);
+			resultSet.next();
+			//while(resultSet.next()) {
+			//resultSet.next();
+			//total = Integer.toString((resultSet.getInt(1) * 7) + 1);
+			MUTA_NRO_FICHA = resultSet.getString("nupre");// (9)
+			resultSetTemp = dbConnector
+					.execQuery("SELECT barrio FROM public.predio_ficha WHERE t_id=" + resultSet.getString("t_id"),
+							dbConnector.conn);
+			resultSetTemp.next();
+			MUTA_BARRIO = resultSetTemp.getString("barrio");
+			System.out.printf("Barrio: " + MUTA_BARRIO + "%n");
+			
+			//int count = resultSet.getInt(1);	
+			//while (resultSet.next()) {
+				//System.out.printf("%-30.30s  %-30.30s%n", resultSet.getString("t_id"), resultSet.getString("tipo"));
+				//System.out.printf("%-30.30s %-30.30s%n", resultSet.getString(1), resultSet.getString(5));
+				//System.out.printf("Cantidad de registros: " + total + "%n");
+				 //result = resultSet.getString("count");
+			//}
+			//}
 			System.out.println(dbConnector.disconnect(dbConnector.conn));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

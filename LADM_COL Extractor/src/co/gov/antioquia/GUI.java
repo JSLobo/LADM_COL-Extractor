@@ -247,7 +247,15 @@ public class GUI implements ActionListener {
 
 		JButton btnGenerarReporte = new JButton("Generar reporte");
 		btnGenerarReporte.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent event) {
+				CadastralUpdateReportGenerator reportGenerator = new CadastralUpdateReportGenerator();
+				String RESO_VIGENCIA = textField_3.getText();
+				String RESO_RESOLUC = textField_4.getText();
+				String RESO_MPIO = comboBox_Municipality.getSelectedItem().toString();
+				//String RESO_SECTOR = comboBox_1.getSelectedItem().toString();
+				String RESO_SECTOR = "";
+				reportGenerator.buildReport(dbConnector, RESO_VIGENCIA, RESO_RESOLUC, RESO_MPIO, RESO_SECTOR);
+				
 			}
 		});
 		btnGenerarReporte.setBounds(10, 185, 158, 23);
@@ -326,12 +334,13 @@ public class GUI implements ActionListener {
 
 		JButton btnSeleccionar = new JButton("Seleccionar");
 		btnSeleccionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser chooser = new JFileChooser();
+			public void actionPerformed(ActionEvent event) {
+				/*JFileChooser chooser = new JFileChooser();
 				chooser.setCurrentDirectory(new java.io.File("."));
 				chooser.setDialogTitle("select folder");
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				chooser.setAcceptAllFileFilterUsed(false);
+				chooser.setAcceptAllFileFilterUsed(false);*/
+				
 			}
 
 		});
@@ -344,6 +353,10 @@ public class GUI implements ActionListener {
 		textField_5.setBounds(10, 154, 431, 20);
 		panel_1.add(textField_5);
 		textField_5.setColumns(10);
+		
+		JLabel lblNewLabel_7 = new JLabel("New label");
+		lblNewLabel_7.setBounds(81, 220, 316, 15);
+		panel_1.add(lblNewLabel_7);
 
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Ayuda", null, panel_2, null);
