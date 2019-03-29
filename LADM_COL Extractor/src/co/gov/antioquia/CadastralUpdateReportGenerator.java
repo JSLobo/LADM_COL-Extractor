@@ -1,7 +1,10 @@
 package co.gov.antioquia;
 
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JFileChooser;
 
 public class CadastralUpdateReportGenerator {
 
@@ -30,9 +35,10 @@ public class CadastralUpdateReportGenerator {
 	}
 
 	public void buildReport(DBConnector dbConnector, String RESO_VIGENCIA, String RESO_RESOLUC, String RESO_MPIO,
-			String RESO_SECTOR) {
+			String RESO_SECTOR) throws IOException {
 		List<String> baseInformation = new ArrayList<String>();
 		ArrayList<ArrayList<String>> allData = null;
+		String content = "";
 		int allDataSize = 0;
 		baseInformation.add(RESO_VIGENCIA);
 		baseInformation.add(RESO_RESOLUC);
@@ -46,18 +52,22 @@ public class CadastralUpdateReportGenerator {
 		allData = getInformation(dbConnector, baseInformation);
 		allDataSize = allData.size();
 		// Get the file reference
-		Path path = Paths.get("/home/mrwolf/Documents/actualizacionCatastral.txt");
-
-		try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-			for (int i = 1; i <= allDataSize; i++) {
-				for (int j = 1; j <= allData.get(i).size(); j++)
-					writer.write(allData.get(i).get(j));
+		//Path fileName = Paths.get("/../../Documents/actualizacionCatastral.txt");
+		
+		FileWriter fileWriter = new FileWriter("actualizacionCatastral.txt");
+		BufferedWriter bw = new BufferedWriter(fileWriter);
+		//PrintWriter printWriter = new PrintWriter(fileWriter);
+		for (int i = 0; i < allDataSize; i++) {
+			for (int j = 0; j < allData.get(i).size(); j++) {
+				content = allData.get(i).get(j);
+				bw.write(content);
+				bw.newLine();
+				// printWriter.printf("Product name is %s and its price is %d $", "iPhone",
+				// 1000);
 			}
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+
+		bw.close();
 	}
 
 	public ArrayList<String> getInformationTable1(DBConnector dbConnector, List<String> baseInformation) { // Resoluci
@@ -292,7 +302,7 @@ public class CadastralUpdateReportGenerator {
 				resultSetTemp.next();
 				MUPO_NOMBRE = resultSetTemp.getString("primer_nombre");
 				resultSetTemp = dbConnector
-						.execQuery("SELECT codigo_registral_derecho FROM public.col_derecho WHERE t_id="
+						.execQuery("SELECT codigo_registral_derecho FROM public.col_derecho WHERE unidad_predio="
 								+ resultSet.getString("t_id"), dbConnector.conn);
 				resultSetTemp.next();
 				MUPO_DERECHO = resultSetTemp.getString("codigo_registral_derecho");
@@ -374,10 +384,10 @@ public class CadastralUpdateReportGenerator {
 				resultSetTemp.next();
 				MUCO_NRO_PISOS = resultSetTemp.getString("numero_pisos");
 				resultSetTemp = dbConnector
-						.execQuery("SELECT anio_construction FROM public.unidad_construccion WHERE t_id="
+						.execQuery("SELECT anio_construccion FROM public.unidad_construccion WHERE t_id="
 								+ resultSet.getString("t_id"), dbConnector.conn);
 				resultSetTemp.next();
-				MUCO_EDAD_CONSTR = resultSetTemp.getString("anio_construction");
+				MUCO_EDAD_CONSTR = resultSetTemp.getString("anio_construccion");
 				basicLine = MUCO_ID_REG + MUCO_VIGENCIA + MUCO_TIPO_RESO + MUCO_RESOLUC + MUCO_NRO_FICHA + MUCO_NRO_REG
 						+ MUCO_NRO_CONST + MUCO_PUNTOS + MUCO_AREA_CONST + MUCO_MEJORA + MUCO_LEY56 + MUCO_IDENTIFICADOR
 						+ MUCO_ACUEDUCTO + MUCO_TELEFONO + MUCO_ALCANTARILLADO + MUCO_ENERGIA_ELEC + MUCO_GAS

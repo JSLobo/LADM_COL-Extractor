@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.sql.Connection;
 
 public class GUI implements ActionListener {
@@ -254,7 +255,12 @@ public class GUI implements ActionListener {
 				String RESO_MPIO = comboBox_Municipality.getSelectedItem().toString();
 				//String RESO_SECTOR = comboBox_1.getSelectedItem().toString();
 				String RESO_SECTOR = "";
-				reportGenerator.buildReport(dbConnector, RESO_VIGENCIA, RESO_RESOLUC, RESO_MPIO, RESO_SECTOR);
+				try {
+					reportGenerator.buildReport(dbConnector, RESO_VIGENCIA, RESO_RESOLUC, RESO_MPIO, RESO_SECTOR);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 		});
