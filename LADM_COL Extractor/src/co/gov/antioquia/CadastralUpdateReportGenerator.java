@@ -34,11 +34,12 @@ public class CadastralUpdateReportGenerator {
 		return dataArrayList;
 	}
 
-	public void buildReport(DBConnector dbConnector, String RESO_VIGENCIA, String RESO_RESOLUC, String RESO_MPIO,
+	public void buildReport(DBConnector dbConnector, File selectedFile, String RESO_VIGENCIA, String RESO_RESOLUC, String RESO_MPIO,
 			String RESO_SECTOR) throws IOException {
 		List<String> baseInformation = new ArrayList<String>();
 		ArrayList<ArrayList<String>> allData = null;
 		String content = "";
+		String path = "/actualizacion_Catastral_" + RESO_VIGENCIA+  "_" + RESO_RESOLUC + ".txt";
 		int allDataSize = 0;
 		baseInformation.add(RESO_VIGENCIA);
 		baseInformation.add(RESO_RESOLUC);
@@ -54,7 +55,11 @@ public class CadastralUpdateReportGenerator {
 		// Get the file reference
 		//Path fileName = Paths.get("/../../Documents/actualizacionCatastral.txt");
 		
-		FileWriter fileWriter = new FileWriter("actualizacionCatastral.txt");
+		if (selectedFile.isDirectory()) {
+			path = selectedFile.getAbsolutePath() + path;
+		} 
+		
+		FileWriter fileWriter = new FileWriter(path);
 		BufferedWriter bw = new BufferedWriter(fileWriter);
 		//PrintWriter printWriter = new PrintWriter(fileWriter);
 		for (int i = 0; i < allDataSize; i++) {

@@ -4,9 +4,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
+import java.awt.Cursor;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.filechooser.FileSystemView;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
@@ -18,9 +22,12 @@ import javax.swing.JFileChooser;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 
@@ -38,6 +45,7 @@ public class GUI implements ActionListener {
 	private JTextField textField_6;
 	private DBConnector dbConnector;
 	private String status;
+	private File selectedFile;
 	
 
 	/**
@@ -191,11 +199,21 @@ public class GUI implements ActionListener {
 				// How to make this work ?
 				// Like this:
 				status = new DBConnector().testConnection(textField_6.getText(), Integer.parseInt(textField.getText()), textField_2.getText(), textField_1.getText(), String.copyValueOf(passwordField.getPassword()));
-				System.out.printf("Status: " + "%s", status);
+				System.out.printf("Status: " + "%s%n", status);
 				lblNewLabel_6.setText(status);
 			}
 		});
 		
+		
+		
+		
+		
+
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("Reporte de Actualizaci\u00F3n Catastral", null, panel_1, null);
+		tabbedPane.setEnabledAt(1, false);
+		panel_1.setLayout(null);
+
 		JButton btnDesconectar = new JButton("Desconectar");
 		btnDesconectar.setEnabled(false);
 		btnDesconectar.setBounds(176, 181, 132, 23);
@@ -210,6 +228,7 @@ public class GUI implements ActionListener {
 						System.out.println(status);
 						lblNewLabel_6.setText(status);
 						btnDesconectar.setEnabled(false);
+						tabbedPane.setEnabledAt(1,false);
 						//btnConectar.setEnabled(true);
 				// new DBConnector().testConnection("localhost", 5432, "ladm_col", "postgres",
 				// "C4tastr0");
@@ -235,18 +254,54 @@ public class GUI implements ActionListener {
 				lblNewLabel_6.setText(status);
 				  if (dbConnector.conn != null) {
 					 btnDesconectar.setEnabled(true);
+					 tabbedPane.setEnabledAt(1,true);
 				 }
 				 // new DBConnector().testConnection("localhost", 5432, "ladm_col", "postgres",
 				// "C4tastr0");
 			}
 		});
 		
-
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Reporte de Actualizaci\u00F3n Catastral", null, panel_1, null);
-		panel_1.setLayout(null);
-
 		JButton btnGenerarReporte = new JButton("Generar reporte");
+		btnGenerarReporte.setEnabled(false);
+		
+		JButton btnSeleccionar = new JButton("Directorio...");
+		btnSeleccionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				/*
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new java.io.File("."));
+				chooser.setDialogTitle("select folder");
+				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				chooser.setAcceptAllFileFilterUsed(false);*/
+				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+				jfc.setDialogTitle("Escoja un directorio para guardar el archivo:");
+				jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int returnValue = jfc.showOpenDialog(null);
+				// int returnValue = jfc.showSaveDialog(null);
+
+				if (returnValue == JFileChooser.APPROVE_OPTION) {
+					selectedFile = jfc.getSelectedFile();
+					System.out.println(selectedFile.getAbsolutePath());
+					textField_5.setText(selectedFile.getAbsolutePath());
+					btnGenerarReporte.setEnabled(true);
+				}
+			}
+
+		});
+		btnSeleccionar.setBounds(271, 125, 126, 23);
+		panel_1.add(btnSeleccionar);
+		btnSeleccionar.addActionListener(this);
+		
+		JLabel lblNewLabel_7 = new JLabel("");
+		lblNewLabel_7.setBounds(81, 222, 316, 15);
+		panel_1.add(lblNewLabel_7);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setBounds(180, 184, 261, 34);
+		panel_1.add(progressBar);
+		
+		
+		
 		btnGenerarReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				CadastralUpdateReportGenerator reportGenerator = new CadastralUpdateReportGenerator();
@@ -256,7 +311,17 @@ public class GUI implements ActionListener {
 				//String RESO_SECTOR = comboBox_1.getSelectedItem().toString();
 				String RESO_SECTOR = "";
 				try {
-					reportGenerator.buildReport(dbConnector, RESO_VIGENCIA, RESO_RESOLUC, RESO_MPIO, RESO_SECTOR);
+					lblNewLabel_7.setText("Generando reporte ...");
+					Border border = BorderFactory.createTitledBorder("Reporte en proceso...");
+				    progressBar.setBorder(border);
+					progressBar.setValue(25);
+					progressBar.setStringPainted(true);
+					reportGenerator.buildReport(dbConnector, selectedFile, RESO_VIGENCIA, RESO_RESOLUC, RESO_MPIO, RESO_SECTOR);
+					border = BorderFactory.createTitledBorder("Terminado");
+					progressBar.setBorder(border);
+					progressBar.setValue(100);
+					progressBar.setStringPainted(true);
+					lblNewLabel_7.setText("Reporte generado satisfactoriamente.");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -266,11 +331,7 @@ public class GUI implements ActionListener {
 		});
 		btnGenerarReporte.setBounds(10, 185, 158, 23);
 		panel_1.add(btnGenerarReporte);
-
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(180, 185, 261, 23);
-		panel_1.add(progressBar);
-
+		
 		JLabel lblNewLabel_1 = new JLabel("Vigencia resoluci\u00F3n");
 		lblNewLabel_1.setBounds(10, 11, 143, 14);
 		panel_1.add(lblNewLabel_1);
@@ -331,38 +392,18 @@ public class GUI implements ActionListener {
 		panel_1.add(separator_1);
 
 		JLabel lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(16, 215, 66, 14);
+		lblEstado.setBounds(20, 223, 66, 14);
 		panel_1.add(lblEstado);
 
 		JLabel lblNewLabel_5 = new JLabel("Ruta de donde guardar\u00E1 el archivo");
 		lblNewLabel_5.setBounds(16, 129, 255, 19);
 		panel_1.add(lblNewLabel_5);
 
-		JButton btnSeleccionar = new JButton("Seleccionar");
-		btnSeleccionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
-				/*JFileChooser chooser = new JFileChooser();
-				chooser.setCurrentDirectory(new java.io.File("."));
-				chooser.setDialogTitle("select folder");
-				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				chooser.setAcceptAllFileFilterUsed(false);*/
-				
-			}
-
-		});
-		btnSeleccionar.setBounds(271, 125, 126, 23);
-		panel_1.add(btnSeleccionar);
-		btnSeleccionar.addActionListener(this);
-
 		textField_5 = new JTextField();
 		textField_5.setEnabled(false);
 		textField_5.setBounds(10, 154, 431, 20);
 		panel_1.add(textField_5);
 		textField_5.setColumns(10);
-		
-		JLabel lblNewLabel_7 = new JLabel("New label");
-		lblNewLabel_7.setBounds(81, 220, 316, 15);
-		panel_1.add(lblNewLabel_7);
 
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Ayuda", null, panel_2, null);
