@@ -4,21 +4,20 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JFileChooser;
-
 public class CadastralUpdateReportGenerator {
 
-	public void getDirectoryPath() {
-
+	public String getDirectoryPath(File selectedFile, String RESO_VIGENCIA, String RESO_RESOLUC) {
+		String path = "/actualizacion_Catastral_" + RESO_VIGENCIA+  "_" + RESO_RESOLUC + ".txt";
+		
+		if (selectedFile.isDirectory()) {
+			path = selectedFile.getAbsolutePath() + path;
+		} 
+		return path;
 	}
 
 	public ArrayList<ArrayList<String>> getInformation(DBConnector dbConnector, List<String> baseInformation) {
@@ -34,12 +33,11 @@ public class CadastralUpdateReportGenerator {
 		return dataArrayList;
 	}
 
-	public void buildReport(DBConnector dbConnector, File selectedFile, String RESO_VIGENCIA, String RESO_RESOLUC, String RESO_MPIO,
+	public void buildReport(DBConnector dbConnector, String path, String RESO_VIGENCIA, String RESO_RESOLUC, String RESO_MPIO,
 			String RESO_SECTOR) throws IOException {
 		List<String> baseInformation = new ArrayList<String>();
 		ArrayList<ArrayList<String>> allData = null;
 		String content = "";
-		String path = "/actualizacion_Catastral_" + RESO_VIGENCIA+  "_" + RESO_RESOLUC + ".txt";
 		int allDataSize = 0;
 		baseInformation.add(RESO_VIGENCIA);
 		baseInformation.add(RESO_RESOLUC);
@@ -52,23 +50,14 @@ public class CadastralUpdateReportGenerator {
 		baseInformation.add(this.getSumOfPoints(dbConnector));
 		allData = getInformation(dbConnector, baseInformation);
 		allDataSize = allData.size();
-		// Get the file reference
-		//Path fileName = Paths.get("/../../Documents/actualizacionCatastral.txt");
-		
-		if (selectedFile.isDirectory()) {
-			path = selectedFile.getAbsolutePath() + path;
-		} 
 		
 		FileWriter fileWriter = new FileWriter(path);
 		BufferedWriter bw = new BufferedWriter(fileWriter);
-		//PrintWriter printWriter = new PrintWriter(fileWriter);
 		for (int i = 0; i < allDataSize; i++) {
 			for (int j = 0; j < allData.get(i).size(); j++) {
 				content = allData.get(i).get(j);
 				bw.write(content);
 				bw.newLine();
-				// printWriter.printf("Product name is %s and its price is %d $", "iPhone",
-				// 1000);
 			}
 		}
 
@@ -79,14 +68,14 @@ public class CadastralUpdateReportGenerator {
 		ArrayList<String> tableData = new ArrayList<String>();
 		String RESO_ID_REG = "1";
 		String RESO_VIGENCIA = baseInformation.get(0);
-		System.out.printf("Vigencia resolución: " + RESO_VIGENCIA + "%n");
+		//System.out.printf("Vigencia resolución: " + RESO_VIGENCIA + "%n");
 		String RESO_TIPO_RESO = "184";
 		String RESO_RESOLUC = baseInformation.get(1);
-		System.out.printf("# Resolución: " + RESO_RESOLUC + "%n");
+		//System.out.printf("# Resolución: " + RESO_RESOLUC + "%n");
 		String RESO_MPIO = baseInformation.get(2);
-		System.out.printf("MUNICIPIO: " + RESO_MPIO + "%n");
+		//System.out.printf("MUNICIPIO: " + RESO_MPIO + "%n");
 		String RESO_SECTOR = baseInformation.get(3);
-		System.out.printf("SECTOR: " + RESO_SECTOR + "%n");
+		//System.out.printf("SECTOR: " + RESO_SECTOR + "%n");
 		String RESO_NRO_REG = baseInformation.get(4);
 		String RESO_AREA_TERRE = "000000000000";
 		String RESO_AREA_CONS = baseInformation.get(7);
@@ -142,37 +131,37 @@ public class CadastralUpdateReportGenerator {
 						dbConnector.conn);
 				resultSetTemp.next();
 				MUTA_BARRIO = resultSetTemp.getString("barrio");
-				System.out.printf("Barrio: " + MUTA_BARRIO + "%n");
+				//System.out.printf("Barrio: " + MUTA_BARRIO + "%n");
 				resultSetTemp = dbConnector.execQuery(
 						"SELECT manzana_vereda FROM public.predio_ficha WHERE t_id=" + resultSet.getString("t_id"),
 						dbConnector.conn);
 				resultSetTemp.next();
 				MUTA_MANZ_VERE = resultSetTemp.getString("manzana_vereda");
-				System.out.printf("Manzana o vereda " + MUTA_MANZ_VERE + "%n");
+				//System.out.printf("Manzana o vereda " + MUTA_MANZ_VERE + "%n");
 				resultSetTemp = dbConnector.execQuery(
 						"SELECT numero_predial_anterior FROM public.predio WHERE t_id=" + resultSet.getString("t_id"),
 						dbConnector.conn);
 				resultSetTemp.next();
 				MUTA_PREDIO = resultSetTemp.getString("numero_predial_anterior");
-				System.out.printf("Predio: " + MUTA_PREDIO + "%n");
+				//System.out.printf("Predio: " + MUTA_PREDIO + "%n");
 				resultSetTemp = dbConnector.execQuery(
 						"SELECT edificio FROM public.predio_ficha WHERE t_id=" + resultSet.getString("t_id"),
 						dbConnector.conn);
 				resultSetTemp.next();
 				MUTA_EDIFICIO = resultSetTemp.getString("edificio");
-				System.out.printf("Edificio: " + MUTA_EDIFICIO + "%n");
+				//System.out.printf("Edificio: " + MUTA_EDIFICIO + "%n");
 				resultSetTemp = dbConnector.execQuery(
 						"SELECT unidad FROM public.predio_ficha WHERE t_id=" + resultSet.getString("t_id"),
 						dbConnector.conn);
 				resultSetTemp.next();
 				MUTA_UND_PRED = resultSetTemp.getString("unidad");
-				System.out.printf("Unidad: " + MUTA_UND_PRED + "%n");
+				//System.out.printf("Unidad: " + MUTA_UND_PRED + "%n");
 				resultSetTemp = dbConnector.execQuery(
 						"SELECT categoria_suelo_pot FROM public.predio_ficha WHERE t_id=" + resultSet.getString("t_id"),
 						dbConnector.conn);
 				resultSetTemp.next();
 				MUTA_CLASIF_SUELO = resultSetTemp.getString("categoria_suelo_pot");
-				System.out.printf("Clasificación suelo: " + MUTA_CLASIF_SUELO + "%n");
+				//System.out.printf("Clasificación suelo: " + MUTA_CLASIF_SUELO + "%n");
 				resultSetTemp = dbConnector.execQuery(
 						"SELECT barrio FROM public.predio_ficha WHERE t_id=" + resultSet.getString("t_id"),
 						dbConnector.conn);
@@ -446,7 +435,6 @@ public class CadastralUpdateReportGenerator {
 	public ArrayList<String> getInformationTable7(DBConnector dbConnector, List<String> baseInformation) { // Lindmuta
 		ArrayList<String> tableData = new ArrayList<String>();
 		ResultSet resultSet = null;
-		ResultSet resultSetTemp = null;
 		String LIMU_ID_REG = "7";
 		String LIMU_VIGENCIA = baseInformation.get(0);
 		String LIMU_TIPO_RESO = "184";
@@ -474,7 +462,6 @@ public class CadastralUpdateReportGenerator {
 	public ArrayList<String> getInformationTable8(DBConnector dbConnector, List<String> baseInformation) { // Cartmuta
 		ArrayList<String> tableData = new ArrayList<String>();
 		ResultSet resultSet = null;
-		ResultSet resultSetTemp = null;
 		String CARM_ID_REG = "8";
 		String CARM_VIGENCIA = baseInformation.get(0);
 		String CARM_TIPO_RESO = "184";
@@ -519,7 +506,7 @@ public class CadastralUpdateReportGenerator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.printf("Cantidad total de registros del archivo: " + total + "%n");
+		//System.out.printf("Cantidad total de registros del archivo: " + total + "%n");
 		return total;
 	}
 
@@ -535,7 +522,7 @@ public class CadastralUpdateReportGenerator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.printf("Cantidad de registros por tabla: " + total + "%n");
+		//System.out.printf("Cantidad de registros por tabla: " + total + "%n");
 		return total;
 	}
 
@@ -555,7 +542,7 @@ public class CadastralUpdateReportGenerator {
 		 * e.printStackTrace(); }
 		 */
 		total = Integer.toString(summatory);
-		System.out.printf("Cantidad area de terreno: " + total + "%n");
+		//System.out.printf("Cantidad area de terreno: " + total + "%n");
 		return total = Integer.toString(summatory);
 	}
 
@@ -575,7 +562,7 @@ public class CadastralUpdateReportGenerator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.printf("Cantidad area construida: " + total + "%n");
+		//System.out.printf("Cantidad area construida: " + total + "%n");
 		return total;
 	}
 
@@ -595,7 +582,7 @@ public class CadastralUpdateReportGenerator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.printf("Cantidad total puntos de construcción: " + total + "%n");
+		//System.out.printf("Cantidad total puntos de construcción: " + total + "%n");
 		return total;
 	}
 }
