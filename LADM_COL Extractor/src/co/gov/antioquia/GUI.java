@@ -78,7 +78,7 @@ public class GUI implements ActionListener {
 		// frame.setIconImage(antioqCadastralIcon);
 		frame.setBounds(100, 100, 661, 443);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		frame.setTitle("LADM_COL Extractor - DSIC Gobernación de Antioquia");
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		/*

@@ -27,10 +27,13 @@ public class CadastralUpdateReportGenerator {
 	 *         generar.
 	 */
 	public String getDirectoryPath(File selectedFile, String RESO_VIGENCIA, String RESO_RESOLUC) {
-		String path = "/actualizacion_Catastral_" + RESO_VIGENCIA + "_" + RESO_RESOLUC + ".txt";
-
-		if (selectedFile.isDirectory()) {
-			path = selectedFile.getAbsolutePath() + path;
+		String linuxPath = "/actualizacion_Catastral_" + RESO_VIGENCIA + "_" + RESO_RESOLUC + ".txt";
+		String windowsPath = "\\actualizacion_Catastral_" + RESO_VIGENCIA + "_" + RESO_RESOLUC + ".txt";
+		String path = "";
+		if ((System.getProperty("os.name").toLowerCase()).equals("win")) {
+			path = selectedFile.getAbsolutePath() + windowsPath;
+		}else if((System.getProperty("os.name").toLowerCase()).equals("linux")) {
+			path = selectedFile.getAbsolutePath() + linuxPath;
 		}
 		return path;
 	}
