@@ -1,0 +1,83 @@
+######## Tabla 2 ########
+MUTA_NRO_FICHA = (Variable= NUPRE, Tabla= Predio )
+-----------------------------
+MUTA_CORREG = (NO PRESENTE)
+MUTA_BARRIO = (Variable = Barrio, Tabla= Predio_Ficha)
+MUTA_MANZ_VERE = (Variable = Manzana_Vereda, Tabla= Predio_Ficha)
+MUTA_PREDIO = (Variable = Numero_Predial_Anterior, Tabla = Predio, LA_BAUnit)
+MUTA_EDIFICIO = (Variable = Edificio, Tabla = Predio_Ficha)
+MUTA_UND_PREDIO = (Variable = Unidad, Tabla = Predio_Ficha)
+MUTA_AREA_TERR = (Variable = Area_Calculada_Plano_Local, Tabla = Predio)
+MUTA_DIRECCION = (NO PRESENTE)
+MUTA_CARACTERIST = (NO PRESENTE)
+MUTA_CLASIF_SUELO = (Variable = Categoria_Suelo_POT, Tabla = Predio_Ficha)suburbano=1, proteccion=2
+MUTA_COEFIC_PREDIO = (NO PRESENTE)
+MUTA_COEFIC_EDIFICIO = (NO PRESENTE)
+----------------------------
+MUTA_CORREG_ANT = (NO PRESENTE)
+MUTA_BARRIO_ANT = (Variable = Barrio, Tabla= Predio_Ficha)
+MUTA_MANZ_VERE_ANT = (Variable = Manzana_Vereda, Tabla= Predio_Ficha)
+MUTA_PREDIO_ANT = (Variable = Numero_Predial_Anterior, Tabla = Predio )
+MUTA_EDIFICIO_ANT = (Variable = Edificio, Tabla = Predio_Ficha)
+MUTA_UND_PREDIO_ANT = (Variable = Unidad, Tabla = Predio_Ficha)
+MUTA_CLASIF_SUELO_ANT = (Variable = Categoria_Suelo_POT, Tabla = Predio_Ficha)
+
+######### Tabla 3 #######
+DEMU_NRO_FICHA = (Variable= NUPRE, Tabla= Predio )
+DEMU_DESTI_ECO = (Variable = Destino_Econo, Tabla = Unidad_Construccion)
+DEMU_PORC_DEST = (NO APLICA)
+
+######### Tabla 4 #######
+MUPO_NRO_FICHA = (Variable = NUPRE, Tabla= Predio)
+MUPO_TIPO_DOC = (Variable= Tipo_Documento, Tabla = Interesado_Natural)
+MUPO_DOCUMENTO = (Variable = Documento_Identidad, Tabla = Interesado_Natural)
+MUPO_PRIMER_APELLIDO = (Variable = Primer_Apellido, Tabla= Interesado_Natural)
+MUPO_NOMBRE = (Variable= Primer_Nombre, Tabla= Interesado_Natural)
+MUPO_DERECHO = (Variable= Codigo_Registral_Derecho, Tabla = COL_Derecho)
+MUPO_NOTARIA = (NI)
+MUPO_ESCRITURA = (NI)
+MUPO_FECHA_ESCRIT = (NI)
+MUPO_FECHA_REGIST = (NI)
+MUPO_TOMO = (NI)
+MUPO_MATRICULA = (Variable = FMI, Tabla = Predio)
+MUPO_CALIDAD_PROP = (NO PRESENTE)
+MUPO_GRAVABLE = (NO PRESENTE)
+MUPO_ADQUISICION = (NO PRESENTE)
+MUPO_LITIGIO = (NO PRESENTE)
+MUPO_PORC_LITIGIO = (NO PRESENTE)
+MUPO_SEGUNDO_APELLIDO = (Variable = Segundo_Apellido, Tabla= Interesado_Natural)
+MUPO_RAZON_COMERCIAL = (NI)
+MUPO_GENERO = (Variable = Genero, Tabla= Interesado_Natural)
+
+######## Tabla 5 #######
+MUCO_NRO_FICHA = (Variable = NUPRE, Tabla = Predio)
+MUCO_NRO_CONST = (Variable = UnidadConstruccion )
+MUCO_PUNTOS = (Variable = Puntuacion, Tabla =Unidad_Construccion)
+MUCO_AREA_CONST = (Variable = Area_Construida, Tabla = UnidadConstruccion)
+MUCO_MEJORA = (Variable = Tipo_Construccion --> COL_TipoConstruccionTipo, Tabla = UnidadConstruccion)
+MUCO_LEY56 = (NA)
+MUCO_IDENTIFICADOR = (NA)
+MUCO_ACUEDUCTO = (NA)
+MUCO_TELEFONO = (NA)
+MUCO_ALCANTARILLADO = (NA) 
+MUCO_ENERGIA_ELEC = (NA)
+MUCO_GAS = (NA)
+MUCO_NRO_PISOS = (Variable = Numero_Pisos, Tabla = UnidadConstruccion)
+MUCO_PORC_CONSTR = (NA)
+MUCO_EDAD_CONSTR = (Variable = AÑO ACTUAL - Anio_Construction, Tabla = Unidad_Construccion)
+
+######## Tabla 6 #######
+MUCA_NRO_FICHA = (Variable = NUPRE, Tabla = Predio)
+MUCA_NRO_CONST = (Variable = UnidadConstruccion )
+MUCA_TIPO_CONST = (Variable = Tipo_Construccion --> COL_TipoConstruccionTipo, Tabla = UnidadConstruccion)
+MUCA_CODIGO_CALI = (NA)
+MUCA_PUNTOS = (NA)
+
+######## Tabla 7 #######
+LIMU_NRO_FICHA = (Variable = NUPRE, Tabla = Predio)
+LIMU_PUNTO_CARDINAL = (NA)
+LIMU_LINDERO = (NA)
+
+######### Tabla 8 #######
+CARM_NRO_FICHA = (Variable = NUPRE, Tabla = Predio)
+LAS DEMÁS NO ESTÁN PRESENTES

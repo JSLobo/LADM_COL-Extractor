@@ -1,13 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_NAv7cOdfEeiMuPRhRJe2BQ" name="LADM_COL Extractor - Architectural view model">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_NAv7cOdfEeiMuPRhRJe2BQ" name="LADM_COL Extractor - Componentes">
   <packageImport xmi:type="uml:PackageImport" xmi:id="_NNTJsOdfEeiMuPRhRJe2BQ">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
-  <packagedElement xmi:type="uml:StateMachine" xmi:id="_NCH0cOdfEeiMuPRhRJe2BQ" name="StateMachine1">
-    <region xmi:type="uml:Region" xmi:id="_NCbWcOdfEeiMuPRhRJe2BQ" name="Region1"/>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_NCH0cOdfEeiMuPRhRJe2BQ" name="Diagrama de Estado">
+    <region xmi:type="uml:Region" xmi:id="_NCbWcOdfEeiMuPRhRJe2BQ" name="Region1">
+      <transition xmi:type="uml:Transition" xmi:id="_WQApQOfAEeienLUq7YPChA" name="ConectarBD" source="_GB0jYOfAEeienLUq7YPChA" target="_P9jzwOfAEeienLUq7YPChA"/>
+      <transition xmi:type="uml:Transition" xmi:id="_0DBmEOfAEeienLUq7YPChA" name="DesconectarBD" source="_P9jzwOfAEeienLUq7YPChA" target="_wsknoOfAEeienLUq7YPChA"/>
+      <transition xmi:type="uml:Transition" xmi:id="_PF4vcOfBEeienLUq7YPChA" name="Consultar" source="_P9jzwOfAEeienLUq7YPChA" target="_F1ydEOfBEeienLUq7YPChA"/>
+      <transition xmi:type="uml:Transition" xmi:id="_ZgOnYOfBEeienLUq7YPChA" name="GenerarReporte" source="_F1ydEOfBEeienLUq7YPChA" target="_WsIIEOfBEeienLUq7YPChA"/>
+      <transition xmi:type="uml:Transition" xmi:id="_eWGKIOfBEeienLUq7YPChA" source="_WsIIEOfBEeienLUq7YPChA" target="_GalBoOfAEeienLUq7YPChA"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_GB0jYOfAEeienLUq7YPChA" name="Inicio"/>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_GalBoOfAEeienLUq7YPChA" name="Fin"/>
+      <subvertex xmi:type="uml:State" xmi:id="_P9jzwOfAEeienLUq7YPChA" name="Conectado"/>
+      <subvertex xmi:type="uml:State" xmi:id="_wsknoOfAEeienLUq7YPChA" name="Desconectado"/>
+      <subvertex xmi:type="uml:State" xmi:id="_F1ydEOfBEeienLUq7YPChA" name="consultaEjecutada"/>
+      <subvertex xmi:type="uml:State" xmi:id="_WsIIEOfBEeienLUq7YPChA" name="ReporteGenerado"/>
+    </region>
   </packagedElement>
-  <packagedElement xmi:type="uml:Activity" xmi:id="_NClugOdfEeiMuPRhRJe2BQ" name="Activity2"/>
-  <packagedElement xmi:type="uml:Model" xmi:id="_I46yUOd-EeiMuPRhRJe2BQ" name="LADM_COL EXtractor - Modelo de vista arquitectónica">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_NClugOdfEeiMuPRhRJe2BQ" name="Diagrama de Actividad" node="_HqcmsOfDEeienLUq7YPChA _7tjhcOfDEeienLUq7YPChA _OEZ88OfEEeienLUq7YPChA _fOK6QOfEEeienLUq7YPChA _pvcgoOfEEeienLUq7YPChA _t-es4OfEEeienLUq7YPChA _-V3yEOfEEeienLUq7YPChA _C6B5wOfFEeienLUq7YPChA _GEm_YOfFEeienLUq7YPChA _TIAkQOfFEeienLUq7YPChA _Z_cWIOfFEeienLUq7YPChA">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_mv_QcOfFEeienLUq7YPChA" target="_OEZ88OfEEeienLUq7YPChA" source="_HqcmsOfDEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_okgiEOfFEeienLUq7YPChA" target="_pvcgoOfEEeienLUq7YPChA" source="_OEZ88OfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_pk2kwOfFEeienLUq7YPChA" target="_t-es4OfEEeienLUq7YPChA" source="_pvcgoOfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_rNPe4OfFEeienLUq7YPChA" name="NO" target="_OEZ88OfEEeienLUq7YPChA" source="_t-es4OfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_2NF3oOfFEeienLUq7YPChA" name="SÍ" target="_C6B5wOfFEeienLUq7YPChA" source="_t-es4OfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5t32wOfFEeienLUq7YPChA" target="_GEm_YOfFEeienLUq7YPChA" source="_C6B5wOfFEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_7iVeAOfFEeienLUq7YPChA" target="_TIAkQOfFEeienLUq7YPChA" source="_GEm_YOfFEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_-L5hQOfFEeienLUq7YPChA" target="_Z_cWIOfFEeienLUq7YPChA" source="_TIAkQOfFEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_CdfSQOfGEeienLUq7YPChA" target="_7tjhcOfDEeienLUq7YPChA" source="_Z_cWIOfFEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_K9qjkOfGEeienLUq7YPChA" target="_-V3yEOfEEeienLUq7YPChA" source="_fOK6QOfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_S4UtAOfGEeienLUq7YPChA" name="NO" target="_OEZ88OfEEeienLUq7YPChA" source="_-V3yEOfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_WhJN0OfGEeienLUq7YPChA" name="SÍ" target="_pvcgoOfEEeienLUq7YPChA" source="_-V3yEOfEEeienLUq7YPChA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_cd8jcOfGEeienLUq7YPChA" target="_fOK6QOfEEeienLUq7YPChA" source="_OEZ88OfEEeienLUq7YPChA"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_HqcmsOfDEeienLUq7YPChA" name="Inicio" outgoing="_mv_QcOfFEeienLUq7YPChA"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_7tjhcOfDEeienLUq7YPChA" name="Fin" incoming="_CdfSQOfGEeienLUq7YPChA"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_OEZ88OfEEeienLUq7YPChA" name="Completar datos de conexion a BD" incoming="_mv_QcOfFEeienLUq7YPChA _rNPe4OfFEeienLUq7YPChA _S4UtAOfGEeienLUq7YPChA" outgoing="_okgiEOfFEeienLUq7YPChA _cd8jcOfGEeienLUq7YPChA"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_fOK6QOfEEeienLUq7YPChA" name="Hacer test de conexión" incoming="_cd8jcOfGEeienLUq7YPChA" outgoing="_K9qjkOfGEeienLUq7YPChA"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_pvcgoOfEEeienLUq7YPChA" name="Conectar" incoming="_okgiEOfFEeienLUq7YPChA _WhJN0OfGEeienLUq7YPChA" outgoing="_pk2kwOfFEeienLUq7YPChA"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_t-es4OfEEeienLUq7YPChA" name="¿Conectado?" incoming="_pk2kwOfFEeienLUq7YPChA" outgoing="_rNPe4OfFEeienLUq7YPChA _2NF3oOfFEeienLUq7YPChA"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_-V3yEOfEEeienLUq7YPChA" name="¿Conexión exitosa?" incoming="_K9qjkOfGEeienLUq7YPChA" outgoing="_S4UtAOfGEeienLUq7YPChA _WhJN0OfGEeienLUq7YPChA"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_C6B5wOfFEeienLUq7YPChA" name="Consultar información" incoming="_2NF3oOfFEeienLUq7YPChA" outgoing="_5t32wOfFEeienLUq7YPChA"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_GEm_YOfFEeienLUq7YPChA" name="Generar Reporte" incoming="_5t32wOfFEeienLUq7YPChA" outgoing="_7iVeAOfFEeienLUq7YPChA"/>
+    <node xmi:type="uml:DataStoreNode" xmi:id="_TIAkQOfFEeienLUq7YPChA" name="Reporte en archivo .Txt" incoming="_7iVeAOfFEeienLUq7YPChA" outgoing="_-L5hQOfFEeienLUq7YPChA">
+      <upperBound xmi:type="uml:LiteralInteger" xmi:id="_TICZcOfFEeienLUq7YPChA" value="1"/>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_Z_cWIOfFEeienLUq7YPChA" name="Descargar" incoming="_-L5hQOfFEeienLUq7YPChA" outgoing="_CdfSQOfGEeienLUq7YPChA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_I46yUOd-EeiMuPRhRJe2BQ" name="LADM_COL EXtractor - Clases">
     <packagedElement xmi:type="uml:Class" xmi:id="_I46yUed-EeiMuPRhRJe2BQ" name="SeccionInformativa">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_I46yUud-EeiMuPRhRJe2BQ" name="infoTutorial">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -89,7 +128,6 @@
       <ownedOperation xmi:type="uml:Operation" xmi:id="_xkYikOeCEeiMuPRhRJe2BQ" name="Conectar"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_0EZBMOeCEeiMuPRhRJe2BQ" name="Desconectar"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_2HruoOeCEeiMuPRhRJe2BQ" name="TestearConexion"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_42L8QOeCEeiMuPRhRJe2BQ" name="PingHost"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_n2_PMOeNEeiMuPRhRJe2BQ" name="ReporteActualizacionCatastral">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_vbMAcOeNEeiMuPRhRJe2BQ" name="generado">
@@ -104,19 +142,16 @@
       <ownedAttribute xmi:type="uml:Property" xmi:id="_s7T9UOeQEeiMuPRhRJe2BQ" name="habilitado">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_xauu8OeQEeiMuPRhRJe2BQ" name="reporte">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_xauu8OeQEeiMuPRhRJe2BQ" name="rutaDirectoriorReporte">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_6--acOeSEeiMuPRhRJe2BQ" name="conectorbd" type="_gRyZYOeCEeiMuPRhRJe2BQ" association="_6-8lQOeSEeiMuPRhRJe2BQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6_A2sOeSEeiMuPRhRJe2BQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6_Cr4OeSEeiMuPRhRJe2BQ" value="1"/>
       </ownedAttribute>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_8pGE0OeQEeiMuPRhRJe2BQ" name="GenerarReporte"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_BHIWYOeREeiMuPRhRJe2BQ" name="BuzonDescarga">
-      <generalization xmi:type="uml:Generalization" xmi:id="_Gt44oOeTEeiMuPRhRJe2BQ" general="_n2_PMOeNEeiMuPRhRJe2BQ"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_iiD_oOeSEeiMuPRhRJe2BQ" name="reporteGenerado" type="_n2_PMOeNEeiMuPRhRJe2BQ"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_tMrIMOeSEeiMuPRhRJe2BQ" name="DescargarReporte"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_8pGE0OeQEeiMuPRhRJe2BQ" name="ExtraerInformacion"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_By4i8OeuEeienLUq7YPChA" name="ObtenerRutaDirectorio"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_RhyEwOeuEeienLUq7YPChA" name="construirReporte"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_uywVMOeSEeiMuPRhRJe2BQ" name="SeccionInformativa">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_XzSTUOeTEeiMuPRhRJe2BQ" name="infoTutorial">
@@ -135,5 +170,106 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AopYsOeTEeiMuPRhRJe2BQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ApnpEOeTEeiMuPRhRJe2BQ" value="*"/>
     </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_CC_5MOfHEeienLUq7YPChA" name="LADM_COL-Extractor">
+    <packagedElement xmi:type="uml:Component" xmi:id="_igF2oOfHEeienLUq7YPChA" name="LADM_COLDB">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_bTQcUOoTEei9if9jZD5G0w" client="_igF2oOfHEeienLUq7YPChA" supplier="_fkBrwOoEEei9if9jZD5G0w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_lDKQUOfHEeienLUq7YPChA" name="Reporte">
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_hN4nsOoTEei9if9jZD5G0w" client="_lDKQUOfHEeienLUq7YPChA" supplier="_fkBrwOoEEei9if9jZD5G0w" contract="_fkBrwOoEEei9if9jZD5G0w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_fkBrwOoEEei9if9jZD5G0w" name="GenerarReporte"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_cvChAOoXEei9if9jZD5G0w" name="LADM_COL Extractor - Paquetes">
+    <packagedElement xmi:type="uml:Package" xmi:id="_rawukOoXEei9if9jZD5G0w" name="Capa de Presentación">
+      <packagedElement xmi:type="uml:Package" xmi:id="_RlmR8OoYEei9if9jZD5G0w" name="Interfaz de Usuario">
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_8lAiIOoZEei9if9jZD5G0w" client="_rawukOoXEei9if9jZD5G0w" supplier="_Diim4OoYEei9if9jZD5G0w"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_PqASgOoZEei9if9jZD5G0w" name="Lógica de Presentación"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Diim4OoYEei9if9jZD5G0w" name="Capa del Negocio">
+      <packagedElement xmi:type="uml:Package" xmi:id="_nwua4OoZEei9if9jZD5G0w" name="Flujo del Negocio"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_qkI9sOoZEei9if9jZD5G0w" name="Componentes del Negocio"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_-b2H8OoZEei9if9jZD5G0w" client="_Diim4OoYEei9if9jZD5G0w" supplier="_fZbOMOoYEei9if9jZD5G0w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_fZbOMOoYEei9if9jZD5G0w" name="Capa de Datos">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_uoARMOoYEei9if9jZD5G0w" client="_fZbOMOoYEei9if9jZD5G0w" supplier="_nG4pIOoYEei9if9jZD5G0w"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_vXjpYOoZEei9if9jZD5G0w" name="Acceso a Datos"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_nG4pIOoYEei9if9jZD5G0w" name="Base de datos PostgreSQL"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_9OcWIOoYEei9if9jZD5G0w" name="Usuarios">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_5XEmgOoZEei9if9jZD5G0w" client="_9OcWIOoYEei9if9jZD5G0w" supplier="_rawukOoXEei9if9jZD5G0w"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_EEXPoOoaEei9if9jZD5G0w" name="LADM_COL Extractor - Despliegue de Componentes">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_aWj_AOodEei9if9jZD5G0w" annotatedElement="_ILJCUOobEei9if9jZD5G0w">
+      <body>La aplicación se conecta al servidor de base de datos usando un conector JDBC de PostgreSQL&#xD;
+</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Node" xmi:id="_ILJCUOobEei9if9jZD5G0w" name="PC Cliente">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_MzwzQOobEei9if9jZD5G0w" annotatedElement="_G1jS8OocEei9if9jZD5G0w">
+        <body>PostgreSQL 10.5&#xD;
+&#xD;
+</body>
+      </ownedComment>
+      <nestedNode xmi:type="uml:Device" xmi:id="_G1jS8OocEei9if9jZD5G0w" name="Servidor Base de Datos"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_Q4TKQOocEei9if9jZD5G0w" name="RDBMS">
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_WEPqsOocEei9if9jZD5G0w" name="LADM_COLBD" fileName=""/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_aZeToOoeEei9if9jZD5G0w" name="Usuario"/>
+  <packagedElement xmi:type="uml:Device" xmi:id="_JzbR8OofEei9if9jZD5G0w" name="Servidor de Base de Datos"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_kU3JQOofEei9if9jZD5G0w" memberEnd="_kU9P4OofEei9if9jZD5G0w _kU_sIOofEei9if9jZD5G0w">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kU7asOofEei9if9jZD5G0w" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kU8BwOofEei9if9jZD5G0w" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_kU9P4OofEei9if9jZD5G0w" name="ingresar datos de conexión" type="_wnZuYOoeEei9if9jZD5G0w" association="_kU3JQOofEei9if9jZD5G0w"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_kU_sIOofEei9if9jZD5G0w" name="usuario" type="_aZeToOoeEei9if9jZD5G0w" association="_kU3JQOofEei9if9jZD5G0w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_4jJngOofEei9if9jZD5G0w" memberEnd="_4jK1oOofEei9if9jZD5G0w _4jK1oeofEei9if9jZD5G0w">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_4jKOkOofEei9if9jZD5G0w" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_4jKOkeofEei9if9jZD5G0w" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_4jK1oOofEei9if9jZD5G0w" name="servidor de base de datos" type="_JzbR8OofEei9if9jZD5G0w" association="_4jJngOofEei9if9jZD5G0w"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_4jK1oeofEei9if9jZD5G0w" name="conectar a bd" type="_CXTeoOofEei9if9jZD5G0w" association="_4jJngOofEei9if9jZD5G0w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_wnZuYOoeEei9if9jZD5G0w" name="Ingresar datos de conexión">
+    <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_WRL9sOogEei9if9jZD5G0w" name="ExtensionPoint1"/>
+    <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_Xq_pQOogEei9if9jZD5G0w" name="ExtensionPoint2"/>
+    <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_ZF-ZgOogEei9if9jZD5G0w" name="ExtensionPoint3"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_9lcSIOoeEei9if9jZD5G0w" name="Realizar Ping">
+    <extend xmi:type="uml:Extend" xmi:id="_ZF9ycOogEei9if9jZD5G0w" extendedCase="_wnZuYOoeEei9if9jZD5G0w" extensionLocation="_ZF-ZgOogEei9if9jZD5G0w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_CXTeoOofEei9if9jZD5G0w" name="Conectar a BD">
+    <extend xmi:type="uml:Extend" xmi:id="_Xq_CMOogEei9if9jZD5G0w" extendedCase="_wnZuYOoeEei9if9jZD5G0w" extensionLocation="_Xq_pQOogEei9if9jZD5G0w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_4Q8SoOoeEei9if9jZD5G0w" name="Testear conexión">
+    <extend xmi:type="uml:Extend" xmi:id="_WRKIgOogEei9if9jZD5G0w" extendedCase="_wnZuYOoeEei9if9jZD5G0w" extensionLocation="_WRL9sOogEei9if9jZD5G0w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_vLT48OogEei9if9jZD5G0w" name="Generar Reporte">
+    <include xmi:type="uml:Include" xmi:id="_8mC_wOogEei9if9jZD5G0w" addition="_CXTeoOofEei9if9jZD5G0w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_HHj2sOohEei9if9jZD5G0w" memberEnd="_HHlE0OohEei9if9jZD5G0w _HHlE0eohEei9if9jZD5G0w">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HHkdwOohEei9if9jZD5G0w" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HHkdweohEei9if9jZD5G0w" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_HHlE0OohEei9if9jZD5G0w" name="testear conexión" type="_4Q8SoOoeEei9if9jZD5G0w" association="_HHj2sOohEei9if9jZD5G0w"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_HHlE0eohEei9if9jZD5G0w" name="usuario" type="_aZeToOoeEei9if9jZD5G0w" association="_HHj2sOohEei9if9jZD5G0w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_IC6rsOohEei9if9jZD5G0w" memberEnd="_IC750eohEei9if9jZD5G0w _IC750uohEei9if9jZD5G0w">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IC7SwOohEei9if9jZD5G0w" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IC750OohEei9if9jZD5G0w" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_IC750eohEei9if9jZD5G0w" name="generar reporte" type="_vLT48OogEei9if9jZD5G0w" association="_IC6rsOohEei9if9jZD5G0w"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_IC750uohEei9if9jZD5G0w" name="usuario" type="_aZeToOoeEei9if9jZD5G0w" association="_IC6rsOohEei9if9jZD5G0w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_KZQQ8OohEei9if9jZD5G0w" memberEnd="_KZRfEOohEei9if9jZD5G0w _KZRfEeohEei9if9jZD5G0w">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KZQ4AOohEei9if9jZD5G0w" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KZQ4AeohEei9if9jZD5G0w" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_KZRfEOohEei9if9jZD5G0w" name="realizar ping" type="_9lcSIOoeEei9if9jZD5G0w" association="_KZQQ8OohEei9if9jZD5G0w"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_KZRfEeohEei9if9jZD5G0w" name="usuario" type="_aZeToOoeEei9if9jZD5G0w" association="_KZQQ8OohEei9if9jZD5G0w"/>
   </packagedElement>
 </uml:Model>
