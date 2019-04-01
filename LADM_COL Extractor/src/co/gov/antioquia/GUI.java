@@ -71,10 +71,11 @@ public class GUI implements ActionListener {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		//ImageIcon antioqCadastralIcon = new ImageIcon("LogoCatastro.ico");
-		//Image antioqCadastralIcon = Toolkit.getDefaultToolkit().getImage("LogoCatastro.ico");
-		//frame.setIconImage(antioqCadastralIcon.getImage());
-		//frame.setIconImage(antioqCadastralIcon);
+		// ImageIcon antioqCadastralIcon = new ImageIcon("LogoCatastro.ico");
+		// Image antioqCadastralIcon =
+		// Toolkit.getDefaultToolkit().getImage("LogoCatastro.ico");
+		// frame.setIconImage(antioqCadastralIcon.getImage());
+		// frame.setIconImage(antioqCadastralIcon);
 		frame.setBounds(100, 100, 661, 443);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -260,7 +261,7 @@ public class GUI implements ActionListener {
 					status = new DBConnector().testConnection(textField_6.getText(),
 							Integer.parseInt(textField.getText()), textField_2.getText(), textField_1.getText(),
 							String.copyValueOf(passwordField.getPassword()));
-					//System.out.printf("Status: " + "%s%n", status);
+					// System.out.printf("Status: " + "%s%n", status);
 					lblNewLabel_6.setText(status);
 				}
 
@@ -283,7 +284,7 @@ public class GUI implements ActionListener {
 				// Like this:
 				// System.out.println("Hola");
 				status = dbConnector.disconnect(dbConnector.conn);
-				//System.out.println(status);
+				// System.out.println(status);
 				lblNewLabel_6.setText(status);
 				btnDesconectar.setEnabled(false);
 				tabbedPane.setEnabledAt(1, false);
@@ -298,7 +299,7 @@ public class GUI implements ActionListener {
 		JButton btnConectar = new JButton("Conectar");
 		btnConectar.setBounds(320, 181, 124, 23);
 		panel.add(btnConectar);
-		
+
 		JScrollPane scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(576, 339, 3, 3);
 		panel.add(scrollPane_2);
@@ -375,7 +376,7 @@ public class GUI implements ActionListener {
 					status = dbConnector.connect(textField_6.getText(), Integer.parseInt(textField.getText()),
 							textField_2.getText(), textField_1.getText(),
 							String.copyValueOf(passwordField.getPassword()));
-					//System.out.println(status);
+					// System.out.println(status);
 					lblNewLabel_6.setText(status);
 
 				}
@@ -409,7 +410,7 @@ public class GUI implements ActionListener {
 
 				if (returnValue == JFileChooser.APPROVE_OPTION) {
 					selectedFile = jfc.getSelectedFile();
-					//System.out.println(selectedFile.getAbsolutePath());
+					// System.out.println(selectedFile.getAbsolutePath());
 					textField_5.setText(selectedFile.getAbsolutePath());
 					btnGenerarReporte.setEnabled(true);
 				}
@@ -427,12 +428,12 @@ public class GUI implements ActionListener {
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setBounds(180, 184, 320, 34);
 		panel_1.add(progressBar);
-		
+
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "URBANO", "RURAL" }));
 		comboBox_1.setBounds(197, 85, 303, 20);
 		panel_1.add(comboBox_1);
-		
+
 		btnGenerarReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				CadastralUpdateReportGenerator reportGenerator = new CadastralUpdateReportGenerator();
@@ -461,8 +462,7 @@ public class GUI implements ActionListener {
 
 					switch (flagFields) {
 					case 1:
-						JOptionPane.showMessageDialog(frame,
-								"Ingrese el año de vigencia de la resolución, ej.: '2019'",
+						JOptionPane.showMessageDialog(frame, "Ingrese el año de vigencia de la resolución, ej.: '2019'",
 								"Campo Vigencia resolución vacío", JOptionPane.WARNING_MESSAGE);
 						break;
 					case 2:
@@ -474,19 +474,19 @@ public class GUI implements ActionListener {
 								JOptionPane.WARNING_MESSAGE);
 						break;
 					default:
-					lblNewLabel_7.setText("Generando reporte ...");
-					Border border = BorderFactory.createTitledBorder("Reporte en proceso...");
-					progressBar.setBorder(border);
-					progressBar.setValue(25);
-					progressBar.setStringPainted(true);
-					path = reportGenerator.getDirectoryPath(selectedFile, RESO_VIGENCIA, RESO_RESOLUC);
-					reportGenerator.buildReport(dbConnector, path, RESO_VIGENCIA, RESO_RESOLUC, RESO_MPIO,
-							RESO_SECTOR);
-					border = BorderFactory.createTitledBorder("Terminado");
-					progressBar.setBorder(border);
-					progressBar.setValue(100);
-					progressBar.setStringPainted(true);
-					lblNewLabel_7.setText("Reporte generado satisfactoriamente.");
+						lblNewLabel_7.setText("Generando reporte ...");
+						Border border = BorderFactory.createTitledBorder("Reporte en proceso...");
+						progressBar.setBorder(border);
+						progressBar.setValue(25);
+						progressBar.setStringPainted(true);
+						path = reportGenerator.getDirectoryPath(selectedFile, RESO_VIGENCIA, RESO_RESOLUC);
+						reportGenerator.buildReport(dbConnector, path, RESO_VIGENCIA, RESO_RESOLUC, RESO_MPIO,
+								RESO_SECTOR);
+						border = BorderFactory.createTitledBorder("Terminado");
+						progressBar.setBorder(border);
+						progressBar.setValue(100);
+						progressBar.setStringPainted(true);
+						lblNewLabel_7.setText("Reporte generado satisfactoriamente.");
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -565,7 +565,7 @@ public class GUI implements ActionListener {
 		textField_5.setBounds(10, 154, 490, 20);
 		panel_1.add(textField_5);
 		textField_5.setColumns(10);
-		
+
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(576, 339, 3, 3);
 		panel_1.add(scrollPane_1);
@@ -573,40 +573,43 @@ public class GUI implements ActionListener {
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("¿Cómo usar este programa?", null, panel_2, null);
 		panel_2.setLayout(null);
-		
+
 		JLabel lblNewLabel_8 = new JLabel("¿Cómo conectarse a la BD?");
 		lblNewLabel_8.setBounds(12, 12, 201, 15);
 		panel_2.add(lblNewLabel_8);
-		
+
 		JLabel lblNewLabel_9 = new JLabel("¿Cómo generar el reporte de Actualización Catastral?");
 		lblNewLabel_9.setBounds(12, 197, 423, 15);
 		panel_2.add(lblNewLabel_9);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(576, 234, 3, 3);
 		panel_2.add(scrollPane);
-		
+
 		JTextPane txtpnUnaVezEn = new JTextPane();
-		txtpnUnaVezEn.setText("Una vez en la pestaña 'Conexión':\n\n1- Llenar cada uno de los campos necesarios para conectarse a la BD arrojada en el sistema PostgreSQL.\n\n2- Hacer clic sobre el botón 'Conectar' para generar una conexión a la BD. Nota: observe que si la conexión es exitosa se habilitará la pestaña 'Reporte de Actualización Catastral'.\n\n3- (Opcional) Hacer clic sobre el botón 'Probar conexión' para probar la conexión a la BD. Nota: esta prueba no deja la conexión abierta.");
+		txtpnUnaVezEn.setText(
+				"Una vez en la pestaña 'Conexión':\n\n1- Llenar cada uno de los campos necesarios para conectarse a la BD arrojada en el sistema PostgreSQL.\n\n2- Hacer clic sobre el botón 'Conectar' para generar una conexión a la BD. Nota: observe que si la conexión es exitosa se habilitará la pestaña 'Reporte de Actualización Catastral'.\n\n3- (Opcional) Hacer clic sobre el botón 'Probar conexión' para probar la conexión a la BD. Nota: esta prueba no deja la conexión abierta.");
 		txtpnUnaVezEn.setEditable(false);
 		txtpnUnaVezEn.setBounds(22, 27, 622, 156);
 		panel_2.add(txtpnUnaVezEn);
-		
+
 		JTextPane txtpnUnaVezEn_1 = new JTextPane();
-		txtpnUnaVezEn_1.setText("Una vez en la pestaña 'Reporte de Actualización Catastral':\n\n1- Llenar y seleccionar en cada uno de los campos necesarios la información pertinente para generar el reporte de Actualización Catastral en un archivo '.txt'.\n\n2 - Hacer clic en el botón 'Seleccionar' para el establecer el directorio o carpeta donde se alojará el archivo.\n\n3- Hacer clic en el botón 'Generar reporte' para dar inicio al proceso de generación del reporte de Actualización Catastral. Una vez el proceso indique 100% en la barra de progreso, puede ubicar el archivo 'actualizacion_Catastral_#Vigencia_#Resolucion.txt'.");
+		txtpnUnaVezEn_1.setText(
+				"Una vez en la pestaña 'Reporte de Actualización Catastral':\n\n1- Llenar y seleccionar en cada uno de los campos necesarios la información pertinente para generar el reporte de Actualización Catastral en un archivo '.txt'.\n\n2 - Hacer clic en el botón 'Seleccionar' para el establecer el directorio o carpeta donde se alojará el archivo.\n\n3- Hacer clic en el botón 'Generar reporte' para dar inicio al proceso de generación del reporte de Actualización Catastral. Una vez el proceso indique 100% en la barra de progreso, puede ubicar el archivo 'actualizacion_Catastral_#Vigencia_#Resolucion.txt'.");
 		txtpnUnaVezEn_1.setBounds(22, 213, 622, 171);
 		panel_2.add(txtpnUnaVezEn_1);
-		
+
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Acerca", null, panel_3, null);
 		panel_3.setLayout(null);
-		
+
 		JLabel lblNewLabel_10 = new JLabel("LADM_COL Extractor");
 		lblNewLabel_10.setBounds(27, 12, 155, 32);
 		panel_3.add(lblNewLabel_10);
-		
+
 		JTextPane txtpnDesarrolladoParaEl = new JTextPane();
-		txtpnDesarrolladoParaEl.setText("Desarrollado para el área de soporte OVC de la Dirección de Sistemas de Información y Catastro de la Gobernación de Antioquia.\n\nAutor: Juan Sebastián Lobo R.\n\nRepositorio proyecto: https://github.com/JSLobo/LADM_COL-Extractor\n\nRelease: 1.0\n\n ");
+		txtpnDesarrolladoParaEl.setText(
+				"Desarrollado para el área de soporte OVC de la Dirección de Sistemas de Información y Catastro de la Gobernación de Antioquia.\n\nAutor: Juan Sebastián Lobo R.\n\nRepositorio proyecto: https://github.com/JSLobo/LADM_COL-Extractor\n\nRelease: 1.0\n\n ");
 		txtpnDesarrolladoParaEl.setEditable(false);
 		txtpnDesarrolladoParaEl.setBounds(37, 56, 557, 144);
 		panel_3.add(txtpnDesarrolladoParaEl);

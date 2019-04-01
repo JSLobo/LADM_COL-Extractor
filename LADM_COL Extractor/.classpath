@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/home/mrwolf/Documents/Github Projects/LADM_COL-Extractor/LADM_COL Extractor/Libs/postgresql-42.2.5.jar">
+	<classpathentry kind="lib" path="/home/mrbeaver/Documents/Github-Projects/LADM_COL-Extractor/LADM_COL Extractor/Libs/postgresql-42.2.5.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

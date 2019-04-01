@@ -9,17 +9,46 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Juan Sebastián Lobo R.
+ *
+ */
 public class CadastralUpdateReportGenerator {
-
+	/**
+	 * Este método obtiene de un objeto File el path de donde se guardará el archivo
+	 * '.txt' que contiene el reporte de Actualización Catastral.
+	 * 
+	 * @param selectedFile  Objeto File que representa los datos de la referencia de
+	 *                      ubicación donde se guardará el archivo.
+	 * @param RESO_VIGENCIA String que contiene la vigencia de la resolución.
+	 * @param RESO_RESOLUC  String que contiene el número de la resolución.
+	 * @return String que contiene la ruta donde se guardará el archivo '.txt' a
+	 *         generar.
+	 */
 	public String getDirectoryPath(File selectedFile, String RESO_VIGENCIA, String RESO_RESOLUC) {
-		String path = "/actualizacion_Catastral_" + RESO_VIGENCIA+  "_" + RESO_RESOLUC + ".txt";
-		
+		String path = "/actualizacion_Catastral_" + RESO_VIGENCIA + "_" + RESO_RESOLUC + ".txt";
+
 		if (selectedFile.isDirectory()) {
 			path = selectedFile.getAbsolutePath() + path;
-		} 
+		}
 		return path;
 	}
 
+	/**
+	 * Este método obtiene de las tablas de la BD toda la información necesaria para
+	 * el reporte de Actualización Catastral.
+	 * 
+	 * @param dbConnector     Instancia de la clase BDConnector usada para
+	 *                        conectarse a la BD almacenada en el servidor
+	 *                        PostgreSQL.
+	 * @param baseInformation List de String que contiene la información base
+	 *                        (vigencia de la resolución, número de la resolución,
+	 *                        municipio, sector) para generar reporte de
+	 *                        Actualización Catastral.
+	 * @return ArrayList de ArrayList de String que almacena toda la información en
+	 *         una lista para cada tabla.
+	 */
 	public ArrayList<ArrayList<String>> getInformation(DBConnector dbConnector, List<String> baseInformation) {
 		ArrayList<ArrayList<String>> dataArrayList = new ArrayList<ArrayList<String>>();
 		dataArrayList.add(this.getInformationTable1(dbConnector, baseInformation));
@@ -33,8 +62,24 @@ public class CadastralUpdateReportGenerator {
 		return dataArrayList;
 	}
 
-	public void buildReport(DBConnector dbConnector, String path, String RESO_VIGENCIA, String RESO_RESOLUC, String RESO_MPIO,
-			String RESO_SECTOR) throws IOException {
+	/**
+	 * Este es el método principal para la construcción del reporte de Actualización
+	 * Catastral, recibe la información obtenida de la BD con el método
+	 * getInformation() y la escribe en un archivo '.txt'.
+	 * 
+	 * @param dbConnector   Instancia de la clase BDConnector usada para conectarse
+	 *                      a la BD almacenada en el servidor PostgreSQL.
+	 * @param path          String que contiene la ruta donde se guardará el archivo
+	 *                      '.txt' a generar.
+	 * @param RESO_VIGENCIA String que contiene la vigencia de la resolución.
+	 * @param RESO_RESOLUC  String que contiene el número de la resolución.
+	 * @param RESO_MPIO     String que contiene el código DANE del municipio.
+	 * @param RESO_SECTOR   String que contiene el código del sector.
+	 * @throws IOException Manejador de excepciones para el caso de errores
+	 *                     asociados a la instancia DBConnector.
+	 */
+	public void buildReport(DBConnector dbConnector, String path, String RESO_VIGENCIA, String RESO_RESOLUC,
+			String RESO_MPIO, String RESO_SECTOR) throws IOException {
 		List<String> baseInformation = new ArrayList<String>();
 		ArrayList<ArrayList<String>> allData = null;
 		String content = "";
@@ -50,7 +95,7 @@ public class CadastralUpdateReportGenerator {
 		baseInformation.add(this.getSumOfPoints(dbConnector));
 		allData = getInformation(dbConnector, baseInformation);
 		allDataSize = allData.size();
-		
+
 		FileWriter fileWriter = new FileWriter(path);
 		BufferedWriter bw = new BufferedWriter(fileWriter);
 		for (int i = 0; i < allDataSize; i++) {
@@ -64,18 +109,31 @@ public class CadastralUpdateReportGenerator {
 		bw.close();
 	}
 
+	/**
+	 * Este método obtiene la información correspondiente a la tabla 1 'RESOLUCI'.
+	 * 
+	 * @param dbConnector     Instancia de la clase BDConnector usada para
+	 *                        conectarse a la BD almacenada en el servidor
+	 *                        PostgreSQL.
+	 * @param baseInformation List de String que contiene la información base
+	 *                        (vigencia de la resolución, número de la resolución,
+	 *                        municipio, sector) para generar reporte de
+	 *                        Actualización Catastral.
+	 * @return ArrayList de String que contiene la información correspondiente a
+	 *         esta tabla.
+	 */
 	public ArrayList<String> getInformationTable1(DBConnector dbConnector, List<String> baseInformation) { // Resoluci
 		ArrayList<String> tableData = new ArrayList<String>();
 		String RESO_ID_REG = "1";
 		String RESO_VIGENCIA = baseInformation.get(0);
-		//System.out.printf("Vigencia resolución: " + RESO_VIGENCIA + "%n");
+		// System.out.printf("Vigencia resolución: " + RESO_VIGENCIA + "%n");
 		String RESO_TIPO_RESO = "184";
 		String RESO_RESOLUC = baseInformation.get(1);
-		//System.out.printf("# Resolución: " + RESO_RESOLUC + "%n");
+		// System.out.printf("# Resolución: " + RESO_RESOLUC + "%n");
 		String RESO_MPIO = baseInformation.get(2);
-		//System.out.printf("MUNICIPIO: " + RESO_MPIO + "%n");
+		// System.out.printf("MUNICIPIO: " + RESO_MPIO + "%n");
 		String RESO_SECTOR = baseInformation.get(3);
-		//System.out.printf("SECTOR: " + RESO_SECTOR + "%n");
+		// System.out.printf("SECTOR: " + RESO_SECTOR + "%n");
 		String RESO_NRO_REG = baseInformation.get(4);
 		String RESO_AREA_TERRE = "000000000000";
 		String RESO_AREA_CONS = baseInformation.get(7);
@@ -87,6 +145,19 @@ public class CadastralUpdateReportGenerator {
 		return tableData;
 	}
 
+	/**
+	 * Este método obtiene la información correspondiente a la tabla 2 'MUTACION'.
+	 * 
+	 * @param dbConnector     Instancia de la clase BDConnector usada para
+	 *                        conectarse a la BD almacenada en el servidor
+	 *                        PostgreSQL.
+	 * @param baseInformation List de String que contiene la información base
+	 *                        (vigencia de la resolución, número de la resolución,
+	 *                        municipio, sector) para generar reporte de
+	 *                        Actualización Catastral.
+	 * @return ArrayList de String que contiene la información correspondiente a
+	 *         esta tabla.
+	 */
 	public ArrayList<String> getInformationTable2(DBConnector dbConnector, List<String> baseInformation) { // Mutacion
 		ArrayList<String> tableData = new ArrayList<String>();
 		ResultSet resultSet = null;
@@ -121,7 +192,6 @@ public class CadastralUpdateReportGenerator {
 		String MUTA_UND_PRED_ANT = "";
 		String MUTA_CLASIF_SUELO_ANT = "";
 		String basicLine = "";
-		// dbConnector.execQuery("SELECT * FROM public.col_derecho", dbConnector.conn);
 		try {
 			resultSet = dbConnector.execQuery("SELECT * FROM public.predio", dbConnector.conn);
 			while (resultSet.next()) {
@@ -131,37 +201,37 @@ public class CadastralUpdateReportGenerator {
 						dbConnector.conn);
 				resultSetTemp.next();
 				MUTA_BARRIO = resultSetTemp.getString("barrio");
-				//System.out.printf("Barrio: " + MUTA_BARRIO + "%n");
+				// System.out.printf("Barrio: " + MUTA_BARRIO + "%n");
 				resultSetTemp = dbConnector.execQuery(
 						"SELECT manzana_vereda FROM public.predio_ficha WHERE t_id=" + resultSet.getString("t_id"),
 						dbConnector.conn);
 				resultSetTemp.next();
 				MUTA_MANZ_VERE = resultSetTemp.getString("manzana_vereda");
-				//System.out.printf("Manzana o vereda " + MUTA_MANZ_VERE + "%n");
+				// System.out.printf("Manzana o vereda " + MUTA_MANZ_VERE + "%n");
 				resultSetTemp = dbConnector.execQuery(
 						"SELECT numero_predial_anterior FROM public.predio WHERE t_id=" + resultSet.getString("t_id"),
 						dbConnector.conn);
 				resultSetTemp.next();
 				MUTA_PREDIO = resultSetTemp.getString("numero_predial_anterior");
-				//System.out.printf("Predio: " + MUTA_PREDIO + "%n");
+				// System.out.printf("Predio: " + MUTA_PREDIO + "%n");
 				resultSetTemp = dbConnector.execQuery(
 						"SELECT edificio FROM public.predio_ficha WHERE t_id=" + resultSet.getString("t_id"),
 						dbConnector.conn);
 				resultSetTemp.next();
 				MUTA_EDIFICIO = resultSetTemp.getString("edificio");
-				//System.out.printf("Edificio: " + MUTA_EDIFICIO + "%n");
+				// System.out.printf("Edificio: " + MUTA_EDIFICIO + "%n");
 				resultSetTemp = dbConnector.execQuery(
 						"SELECT unidad FROM public.predio_ficha WHERE t_id=" + resultSet.getString("t_id"),
 						dbConnector.conn);
 				resultSetTemp.next();
 				MUTA_UND_PRED = resultSetTemp.getString("unidad");
-				//System.out.printf("Unidad: " + MUTA_UND_PRED + "%n");
+				// System.out.printf("Unidad: " + MUTA_UND_PRED + "%n");
 				resultSetTemp = dbConnector.execQuery(
 						"SELECT categoria_suelo_pot FROM public.predio_ficha WHERE t_id=" + resultSet.getString("t_id"),
 						dbConnector.conn);
 				resultSetTemp.next();
 				MUTA_CLASIF_SUELO = resultSetTemp.getString("categoria_suelo_pot");
-				//System.out.printf("Clasificación suelo: " + MUTA_CLASIF_SUELO + "%n");
+				// System.out.printf("Clasificación suelo: " + MUTA_CLASIF_SUELO + "%n");
 				resultSetTemp = dbConnector.execQuery(
 						"SELECT barrio FROM public.predio_ficha WHERE t_id=" + resultSet.getString("t_id"),
 						dbConnector.conn);
@@ -209,6 +279,19 @@ public class CadastralUpdateReportGenerator {
 
 	}
 
+	/**
+	 * Este método obtiene la información correspondiente a la tabla 3 'DESTMUTA'.
+	 * 
+	 * @param dbConnector     Instancia de la clase BDConnector usada para
+	 *                        conectarse a la BD almacenada en el servidor
+	 *                        PostgreSQL.
+	 * @param baseInformation List de String que contiene la información base
+	 *                        (vigencia de la resolución, número de la resolución,
+	 *                        municipio, sector) para generar reporte de
+	 *                        Actualización Catastral.
+	 * @return ArrayList de String que contiene la información correspondiente a
+	 *         esta tabla.
+	 */
 	public ArrayList<String> getInformationTable3(DBConnector dbConnector, List<String> baseInformation) { // Destmuta
 		ArrayList<String> tableData = new ArrayList<String>();
 		ResultSet resultSet = null;
@@ -242,6 +325,19 @@ public class CadastralUpdateReportGenerator {
 		return tableData;
 	}
 
+	/**
+	 * Este método obtiene la información correspondiente a la tabla 4 'MUTAPROP'.
+	 * 
+	 * @param dbConnector     Instancia de la clase BDConnector usada para
+	 *                        conectarse a la BD almacenada en el servidor
+	 *                        PostgreSQL.
+	 * @param baseInformation List de String que contiene la información base
+	 *                        (vigencia de la resolución, número de la resolución,
+	 *                        municipio, sector) para generar reporte de
+	 *                        Actualización Catastral.
+	 * @return ArrayList de String que contiene la información correspondiente a
+	 *         esta tabla.
+	 */
 	public ArrayList<String> getInformationTable4(DBConnector dbConnector, List<String> baseInformation) { // Mutaprop
 		ArrayList<String> tableData = new ArrayList<String>();
 		ResultSet resultSet = null;
@@ -328,6 +424,19 @@ public class CadastralUpdateReportGenerator {
 		return tableData;
 	}
 
+	/**
+	 * Este método obtiene la información correspondiente a la tabla 5 'MUTACONS'.
+	 * 
+	 * @param dbConnector     Instancia de la clase BDConnector usada para
+	 *                        conectarse a la BD almacenada en el servidor
+	 *                        PostgreSQL.
+	 * @param baseInformation List de String que contiene la información base
+	 *                        (vigencia de la resolución, número de la resolución,
+	 *                        municipio, sector) para generar reporte de
+	 *                        Actualización Catastral.
+	 * @return ArrayList de String que contiene la información correspondiente a
+	 *         esta tabla.
+	 */
 	public ArrayList<String> getInformationTable5(DBConnector dbConnector, List<String> baseInformation) { // Mutacons
 		ArrayList<String> tableData = new ArrayList<String>();
 		ResultSet resultSet = null;
@@ -397,6 +506,19 @@ public class CadastralUpdateReportGenerator {
 		return tableData;
 	}
 
+	/**
+	 * Este método obtiene la información correspondiente a la tabla 6 'MUTACALI'.
+	 * 
+	 * @param dbConnector     Instancia de la clase BDConnector usada para
+	 *                        conectarse a la BD almacenada en el servidor
+	 *                        PostgreSQL.
+	 * @param baseInformation List de String que contiene la información base
+	 *                        (vigencia de la resolución, número de la resolución,
+	 *                        municipio, sector) para generar reporte de
+	 *                        Actualización Catastral.
+	 * @return ArrayList de String que contiene la información correspondiente a
+	 *         esta tabla.
+	 */
 	public ArrayList<String> getInformationTable6(DBConnector dbConnector, List<String> baseInformation) { // Mutacali
 		ArrayList<String> tableData = new ArrayList<String>();
 		ResultSet resultSet = null;
@@ -432,6 +554,19 @@ public class CadastralUpdateReportGenerator {
 		return tableData;
 	}
 
+	/**
+	 * Este método obtiene la información correspondiente a la tabla 7 'LINDMUTA'.
+	 * 
+	 * @param dbConnector     Instancia de la clase BDConnector usada para
+	 *                        conectarse a la BD almacenada en el servidor
+	 *                        PostgreSQL.
+	 * @param baseInformation List de String que contiene la información base
+	 *                        (vigencia de la resolución, número de la resolución,
+	 *                        municipio, sector) para generar reporte de
+	 *                        Actualización Catastral.
+	 * @return ArrayList de String que contiene la información correspondiente a
+	 *         esta tabla.
+	 */
 	public ArrayList<String> getInformationTable7(DBConnector dbConnector, List<String> baseInformation) { // Lindmuta
 		ArrayList<String> tableData = new ArrayList<String>();
 		ResultSet resultSet = null;
@@ -459,6 +594,19 @@ public class CadastralUpdateReportGenerator {
 		return tableData;
 	}
 
+	/**
+	 * Este método obtiene la información correspondiente a la tabla 8 'CARTMUTA'.
+	 * 
+	 * @param dbConnector     Instancia de la clase BDConnector usada para
+	 *                        conectarse a la BD almacenada en el servidor
+	 *                        PostgreSQL.
+	 * @param baseInformation List de String que contiene la información base
+	 *                        (vigencia de la resolución, número de la resolución,
+	 *                        municipio, sector) para generar reporte de
+	 *                        Actualización Catastral.
+	 * @return ArrayList de String que contiene la información correspondiente a
+	 *         esta tabla.
+	 */
 	public ArrayList<String> getInformationTable8(DBConnector dbConnector, List<String> baseInformation) { // Cartmuta
 		ArrayList<String> tableData = new ArrayList<String>();
 		ResultSet resultSet = null;
@@ -495,6 +643,14 @@ public class CadastralUpdateReportGenerator {
 		return tableData;
 	}
 
+	/**
+	 * Este método obtiene el número total de registros que tendrá el archivo final
+	 * del reporte de Actualización Catastral.
+	 * 
+	 * @param dbConnector Instancia de la clase BDConnector usada para conectarse a
+	 *                    la BD almacenada en el servidor PostgreSQL.
+	 * @return String que contiene el número de total de registros.
+	 */
 	public String getTotalNumberOfReg(DBConnector dbConnector) {
 		ResultSet resultSet = null;
 		String total = "";
@@ -506,10 +662,20 @@ public class CadastralUpdateReportGenerator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.printf("Cantidad total de registros del archivo: " + total + "%n");
+		// System.out.printf("Cantidad total de registros del archivo: " + total +
+		// "%n");
 		return total;
 	}
 
+	/**
+	 * Este método obtiene el número total de registros que representarán a las
+	 * tablas de la [2 - 8] en el archivo final del reporte de Actualización
+	 * Catastral.
+	 * 
+	 * @param dbConnector Instancia de la clase BDConnector usada para conectarse a
+	 *                    la BD almacenada en el servidor PostgreSQL.
+	 * @return String que contiene el número de total de registros.
+	 */
 	public String getNumberOfReg(DBConnector dbConnector) {
 		ResultSet resultSet = null;
 		String total = "";
@@ -522,13 +688,21 @@ public class CadastralUpdateReportGenerator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.printf("Cantidad de registros por tabla: " + total + "%n");
+		// System.out.printf("Cantidad de registros por tabla: " + total + "%n");
 		return total;
 	}
 
+	/**
+	 * Este método obtiene la suma del área del terreno que se informa en el archivo
+	 * final del reporte de Actualización Catastral.
+	 * 
+	 * @param dbConnector Instancia de la clase BDConnector usada para conectarse a
+	 *                    la BD almacenada en el servidor PostgreSQL.
+	 * @return String que contiene el valor de la suma total.
+	 */
 	public String getAreaOfField(DBConnector dbConnector) {
-		ResultSet resultSet = null;
-		String total = "";
+		// ResultSet resultSet = null;
+		// String total = "";
 		int summatory = 0;
 		/*
 		 * resultSet =
@@ -541,11 +715,19 @@ public class CadastralUpdateReportGenerator {
 		 * } catch (SQLException e) { // TODO Auto-generated catch block
 		 * e.printStackTrace(); }
 		 */
-		total = Integer.toString(summatory);
-		//System.out.printf("Cantidad area de terreno: " + total + "%n");
-		return total = Integer.toString(summatory);
+		// total = Integer.toString(summatory);
+		// System.out.printf("Cantidad area de terreno: " + total + "%n");
+		return Integer.toString(summatory);
 	}
 
+	/**
+	 * Este método obtiene la suma del área de las construcciones que se informan en
+	 * el archivo final del reporte de Actualización Catastral.
+	 * 
+	 * @param dbConnector Instancia de la clase BDConnector usada para conectarse a
+	 *                    la BD almacenada en el servidor PostgreSQL.
+	 * @return String que contiene el valor de la suma total.
+	 */
 	public String getAreaOfBuild(DBConnector dbConnector) {
 		ResultSet resultSet = null;
 		String total = "";
@@ -562,10 +744,19 @@ public class CadastralUpdateReportGenerator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.printf("Cantidad area construida: " + total + "%n");
+		// System.out.printf("Cantidad area construida: " + total + "%n");
 		return total;
 	}
 
+	/**
+	 * Este método obtiene la suma de los puntos correspondientes a todas las
+	 * construcciones que se informan en el archivo final del reporte de
+	 * Actualización Catastral.
+	 * 
+	 * @param dbConnector Instancia de la clase BDConnector usada para conectarse a
+	 *                    la BD almacenada en el servidor PostgreSQL.
+	 * @return String que contiene el valor de la suma total.
+	 */
 	public String getSumOfPoints(DBConnector dbConnector) {
 		ResultSet resultSet = null;
 		String total = "";
@@ -582,7 +773,7 @@ public class CadastralUpdateReportGenerator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.printf("Cantidad total puntos de construcción: " + total + "%n");
+		// System.out.printf("Cantidad total puntos de construcción: " + total + "%n");
 		return total;
 	}
 }

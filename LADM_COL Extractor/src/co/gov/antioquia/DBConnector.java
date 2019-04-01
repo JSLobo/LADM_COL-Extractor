@@ -47,6 +47,7 @@ public class DBConnector {
 
 	/**
 	 * Cierra la conexión abierta en el momento.
+	 * 
 	 * @param connection Instancia de conexión del JDBC.
 	 * @return String con estado de conexión.
 	 */
@@ -64,7 +65,7 @@ public class DBConnector {
 	/**
 	 * Ejecuta consulta a partir de una sentencia SQL por medio de conexión abierta.
 	 * 
-	 * @param query Sentencia SQL de interés.
+	 * @param query      Sentencia SQL de interés.
 	 * @param connection Instancia de conexión del JDBC.
 	 * @return ResultSet instancia que contiene el resultado de la consulta.
 	 */
@@ -114,47 +115,6 @@ public class DBConnector {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
-		DBConnector dbConnector = new DBConnector();
-		String status = dbConnector.connect("localhost", 5432, "ladm_col", "postgres", "C4tastr0");
-		System.out.println(status);
-		ResultSet resultSet = null;
-		ResultSet resultSetTemp = null;
-		String MUTA_BARRIO = "";
-		try {
-			// resultSet = dbConnector.execQuery("SELECT * FROM public.col_derecho",
-			// dbConnector.conn);
-			resultSet = dbConnector.execQuery("SELECT * FROM public.predio", dbConnector.conn);
-			resultSet.next();
-			resultSetTemp = dbConnector.execQuery(
-					"SELECT barrio FROM public.predio_ficha WHERE t_id=" + resultSet.getString("t_id"),
-					dbConnector.conn);
-			resultSetTemp.next();
-			MUTA_BARRIO = resultSetTemp.getString("barrio");
-			System.out.printf("Barrio: " + MUTA_BARRIO + "%n");
-
-			// int count = resultSet.getInt(1);
-			// while (resultSet.next()) {
-			// System.out.printf("%-30.30s %-30.30s%n", resultSet.getString("t_id"),
-			// resultSet.getString("tipo"));
-			// System.out.printf("%-30.30s %-30.30s%n", resultSet.getString(1),
-			// resultSet.getString(5));
-			// System.out.printf("Cantidad de registros: " + total + "%n");
-			// result = resultSet.getString("count");
-			// }
-			// }
-			System.out.println(dbConnector.disconnect(dbConnector.conn));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			// try { rs.close(); } catch (Exception e) { /* ignored */ }
-			try {
-				resultSet.close();
-			} catch (Exception e) {
-				/* ignored */ }
-		}
-
-		System.out.printf("Status: " + "%s",
-				dbConnector.testConnection("localhost", 5432, "ladm_col", "postgres", "C4tastr0"));
+		
 	}
 }
